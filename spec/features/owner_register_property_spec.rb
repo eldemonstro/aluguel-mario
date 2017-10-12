@@ -37,5 +37,28 @@ feature 'Owner Register a Property' do
     expect(page).to have_content 'foto.jpg'
 
   end
-  
+  scenario 'and forget a field' do
+    PropertyType.create(name: 'Apartamento na praia')
+
+    visit new_property_path
+
+    fill_in 'Título', with: ''
+    fill_in 'Localização', with: ''
+    fill_in 'Área', with: ''
+    fill_in 'Descrição', with: ''
+    fill_in 'Quantidade de Quartos', with: ''
+    fill_in 'Valor da Diária', with: ''
+    fill_in 'Mínimo de Diárias', with: ''
+    fill_in 'Máximo de Diárias', with: ''
+    fill_in 'Ocupação Máxima', with: ''
+    fill_in 'Regras de Uso', with: ''
+    fill_in 'Foto', with: ''
+
+    click_on 'Cadastrar'
+
+    expect(page).to have_content 'Você deve informar o Título'
+    expect(page).to have_content 'Você deve informar a Localização'
+    expect(page).to have_content 'Você deve informar o Quantidade de Quartos'
+    expect(page).to have_content 'Você deve informar o Preço da Diária'
+  end
 end

@@ -7,12 +7,13 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    property = Property.new(property_params)
-    if property.save
+    @property = Property.new(property_params)
+    if @property.save
       flash[:message] = 'Imóvel cadastrado com sucesso'
-      redirect_to property_url property
+      redirect_to property_url @property
     else
-
+      @property_types = PropertyType.all
+      render :new
     end
   end
 
