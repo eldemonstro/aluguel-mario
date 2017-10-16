@@ -21,6 +21,19 @@ class PropertiesController < ApplicationController
 
   end
 
+  def search_by_type
+    #@properties = Property.where(property_type.name = params[:name])
+    @properties = Property.joins(:property_type).where(property_types: { name: params[:name] })
+    if @properties.empty?
+      flash[:error] = 'Nenhum imóvel encontrado'
+      redirect_to request.referer
+    else
+      render :results
+    end
+  end
+
+
+
   private
 
   def set_property

@@ -1,1 +1,7 @@
+<%= flash[:error] %>
 <%= link_to 'Cadastrar Imóvel', new_property_path %>
+<%= form_tag("/properties/search_by_type", method: "get") do %>
+  <%= label_tag(:name, 'Buscar por tipo do imóvel') %>
+  <%= text_field_tag(:name) %>
+  <%= submit_tag("Buscar por Tipo") %>
+<% end %>
