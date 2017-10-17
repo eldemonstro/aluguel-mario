@@ -21,6 +21,7 @@
 
 class Property < ApplicationRecord
   belongs_to :property_type
+  has_many :proposals
 
   validates :title, presence: {
     message: 'Você deve informar o Título'

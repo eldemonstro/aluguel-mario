@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :properties , only: [:new , :show, :create] do
+    resources :proposals, only:[:show, :new, :create]
     get 'search_by_type', on: :collection
     get 'search_by_location', on: :collection
   end

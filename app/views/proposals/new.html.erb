@@ -1,0 +1,34 @@
+<h1>Enviar Proposta</h1>
+<% if @proposal.errors.any? %>
+  <ul>
+  <% @proposal.errors.messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= form_for [@property, @proposal] do |f| %>
+  <%= f.label :user_name, 'Nome' %>
+  <%= f.text_field :user_name, placeholder: 'Digite seu nome' %>
+
+  <%= f.label :email, 'Email' %>
+  <%= f.text_field :email, placeholder: 'Digite seu email' %>
+
+  <%= f.label :start_date, 'Data Inicial' %>
+  <%= f.text_field :start_date %>
+
+  <%= f.label :end_date, 'Data Final' %>
+  <%= f.text_field :end_date %>
+
+  <%= f.label :total_guests, 'Quatidade de Pessoas' %>
+  <%= f.number_field :total_guests %>
+
+  <%= f.label :purpose, 'Propósito da Locação' %>
+  <%= f.text_area :purpose %>
+
+  <%= f.label :accept_usage_rules, 'Concordo com as regras de uso' %>
+  <%= f.check_box :accept_usage_rules %>
+
+  <%= f.submit 'Enviar' %>
+
+<% end %>
