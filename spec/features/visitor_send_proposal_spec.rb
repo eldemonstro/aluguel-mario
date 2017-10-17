@@ -34,6 +34,28 @@ feature 'Visitor Send Proposal' do
     expect(page).to have_content '5'
     expect(page).to have_content 'Passeio de família'
     expect(page).to have_content 'R$ 27000,00'
+  end
+  scenario 'and fills nothing' do
+    property_type = PropertyType.create(name: 'Casa de campo')
+    property = Property.create(title: 'Casa de campo para férias',
+                              location: 'Campos do Jordão', area: '100m²',
+                              description: 'Bela casa com piscina',
+                              daily_rate: 600, rooms: 4, minimum_rent_days: 3,
+                              maximum_rent_days: 15, photo: 'casa.jpg',
+                              maximum_occupancy: 10, usage_rules: 'sem animais',
+                              property_type: property_type)
+
+    visit property_url(property)
+    click_on 'Enviar Proposta'
+
+    click_on 'Enviar'
+
+    expect(page).to have_content 'Você deve informar seu Nome'
+    expect(page).to have_content 'Você deve informar seu Email'
+    expect(page).to have_content 'Você deve informar a Data Inicial'
+    expect(page).to have_content 'Você deve informar a Data Final'
+    expect(page).to have_content 'Você deve informar a Quantidade de Pessoas'
+    expect(page).to have_content 'Aceite as Regras de Uso'
 
   end
 end

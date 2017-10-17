@@ -12,14 +12,14 @@ class ProposalsController < ApplicationController
 
   def create
     @proposal = Proposal.new(proposal_params)
-    date_difference = Date.parse(@proposal.end_date) - Date.parse(@proposal.start_date)
-    total_amount = @proposal.total_guests * date_difference * @property.daily_rate
-    @proposal.total_amount = total_amount
     @proposal.property = @property
-    if @proposal.save!
+    @proposal.total_amount_calculator
+
+    if @proposal.save
       flash[:message] = 'Proposta enviada com sucesso'
       redirect_to property_proposal_path(@property, @proposal)
     else
+      render :new
     end
   end
 
@@ -27,7 +27,7 @@ class ProposalsController < ApplicationController
   def proposal_params
     params.require(:proposal).permit(:user_name, :email, :start_date,
                                      :end_date, :total_guests, :purpose,
-                                     :property_id)
+                                     :property_id, :accept_usage_rules)
   end
 
   def set_property

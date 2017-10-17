@@ -1,4 +1,11 @@
 <h1>Enviar Proposta</h1>
+<% if @proposal.errors.any? %>
+  <ul>
+  <% @proposal.errors.messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ul>
+<% end %>
 
 <%= form_for [@property, @proposal] do |f| %>
   <%= f.label :user_name, 'Nome' %>
@@ -19,7 +26,8 @@
   <%= f.label :purpose, 'Propósito da Locação' %>
   <%= f.text_area :purpose %>
 
-  <%= check_box_tag 'Concordo com as regras de uso' %>
+  <%= f.label :accept_usage_rules, 'Concordo com as regras de uso' %>
+  <%= f.check_box :accept_usage_rules %>
 
   <%= f.submit 'Enviar' %>
 
