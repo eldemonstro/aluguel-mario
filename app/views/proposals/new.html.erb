@@ -1,0 +1,26 @@
+<h1>Enviar Proposta</h1>
+
+<%= form_for [@property, @proposal] do |f| %>
+  <%= f.label :user_name, 'Nome' %>
+  <%= f.text_field :user_name, placeholder: 'Digite seu nome' %>
+
+  <%= f.label :email, 'Email' %>
+  <%= f.text_field :email, placeholder: 'Digite seu email' %>
+
+  <%= f.label :start_date, 'Data Inicial' %>
+  <%= f.text_field :start_date %>
+
+  <%= f.label :end_date, 'Data Final' %>
+  <%= f.text_field :end_date %>
+
+  <%= f.label :total_guests, 'Quatidade de Pessoas' %>
+  <%= f.number_field :total_guests %>
+
+  <%= f.label :purpose, 'Propósito da Locação' %>
+  <%= f.text_area :purpose %>
+
+  <%= check_box_tag 'Concordo com as regras de uso' %>
+
+  <%= f.submit 'Enviar' %>
+
+<% end %>
