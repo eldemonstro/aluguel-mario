@@ -14,6 +14,7 @@
 #  updated_at         :datetime         not null
 #  property_id        :integer
 #  accept_usage_rules :boolean
+#  status             :string
 #
 
 class Proposal < ApplicationRecord
@@ -48,5 +49,22 @@ class Proposal < ApplicationRecord
 
     date_difference = Date.parse(end_date) - Date.parse(start_date)
     self.total_amount = total_guests * date_difference * property.daily_rate
+  end
+
+  def accept
+    status = 'accepted'
+    refuse_proposals
+  end
+
+  def refuse_proposals
+    proposals = Proposal.where(property: property, status: 'waiting')
+
+    proposals.each do |proposal|
+      if(proposal.start_date.to_date >= start_date.to_date && proposal.start_date.to_date <= end_date.to_date) || (proposal.end_date.to_date >= start_date.to_date && proposal.end_date.to_date <= end_date.to_date)
+        proposal.status = 'refused'
+        proposal.save
+      end
+    end
+
   end
 end

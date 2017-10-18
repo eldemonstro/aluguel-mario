@@ -13,12 +13,14 @@
 <p><%= @property.usage_rules %></p>
 
 <% @property.proposals.each do |proposal| %>
+  <% if proposal.status == 'waiting' %>
   <div>
+    <%= proposal.status %>
     <%= proposal.user_name %>
     <%= proposal.email %>
-    <%= link_to "Aceitar proposta #{proposal.id}", accept_property_proposal_path(proposal), method: :post%>
+    <%= link_to "Aceitar proposta #{proposal.id}", accept_property_proposal_path(@property, proposal), method: :post%>
   </div>
-
+  <% end %>
 <% end %>
 
 <%= link_to 'Enviar Proposta', new_property_proposal_path(@property) %>

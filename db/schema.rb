@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171017210508) do
+ActiveRecord::Schema.define(version: 20171018205300) do
 
   create_table "properties", force: :cascade do |t|
     t.string "location"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20171017210508) do
     t.datetime "updated_at", null: false
     t.integer "property_id"
     t.boolean "accept_usage_rules"
+    t.string "status", default: "waiting"
     t.index ["property_id"], name: "index_proposals_on_property_id"
   end
 
