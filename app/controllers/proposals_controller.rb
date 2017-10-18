@@ -23,6 +23,13 @@ class ProposalsController < ApplicationController
     end
   end
 
+  def accept
+    proposal = Proposal.find(params[:id])
+    proposal.accept
+
+    redirect_to request.referer
+  end
+
   private
   def proposal_params
     params.require(:proposal).permit(:user_name, :email, :start_date,
