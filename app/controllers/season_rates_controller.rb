@@ -16,6 +16,8 @@ class SeasonRatesController < ApplicationController
     if @season_rate.save
       flash[:message] = 'Temporada enviada com sucesso'
       redirect_to property_season_rate_path(@property, @season_rate)
+    else
+      render :new
     end
   end
 

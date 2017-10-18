@@ -1,5 +1,13 @@
 <h1>Cadastrar Temporada</h1>
 
+<% if @season_rate.errors.any? %>
+  <ul>
+    <% @season_rate.errors.messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_for [@property, @season_rate] do |f| %>
   <%= f.label :name, 'Nome' %>
   <%= f.text_field :name %>

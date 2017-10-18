@@ -14,4 +14,20 @@
 
 class SeasonRate < ApplicationRecord
   belongs_to :property
+
+  validates :name, presence: {
+    message: 'Você deve informar o Nome da Temporada'
+  }
+
+  validates :start_date, presence: {
+    message: 'Você deve informar a Data Inicial'
+  }
+
+  validates :end_date, presence: {
+    message: 'Voce deve informar a Data Final'
+  }
+
+  validates :daily_rate, presence: {
+    message: 'Você deve informar o Valor da Diária'
+  }
 end
