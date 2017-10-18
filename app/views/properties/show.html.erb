@@ -12,4 +12,13 @@
 <p><%= @property.maximum_occupancy %></p>
 <p><%= @property.usage_rules %></p>
 
+<% @property.proposals.each do |proposal| %>
+  <div>
+    <%= proposal.user_name %>
+    <%= proposal.email %>
+    <%= link_to "Aceitar proposta #{proposal.id}", accept_property_proposal_path(proposal), method: :post%>
+  </div>
+
+<% end %>
+
 <%= link_to 'Enviar Proposta', new_property_proposal_path(@property) %>
