@@ -22,6 +22,7 @@
 class Property < ApplicationRecord
   belongs_to :property_type
   has_many :proposals
+  has_many :season_rates
 
   validates :title, presence: {
     message: 'Você deve informar o Título'
