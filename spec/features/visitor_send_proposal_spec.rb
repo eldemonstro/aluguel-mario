@@ -33,7 +33,7 @@ feature 'Visitor Send Proposal' do
     expect(page).to have_content '10/12/2017'
     expect(page).to have_content '5'
     expect(page).to have_content 'Passeio de família'
-    expect(page).to have_content 'R$ 30000,00'
+    expect(page).to have_content 'R$ 30.000,00'
   end
   scenario 'and fills nothing' do
     property_type = PropertyType.create(name: 'Casa de campo')
@@ -92,6 +92,6 @@ feature 'Visitor Send Proposal' do
     expect(page).to have_content '06/12/2017'
     expect(page).to have_content '5'
     expect(page).to have_content 'Passeio de família'
-    expect(page).to have_content 'R$ 20000,00'
+    expect(page).to have_content 'R$ 20.000,00'
   end
 end
