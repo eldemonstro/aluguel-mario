@@ -46,8 +46,8 @@ class Proposal < ApplicationRecord
   def total_amount_calculator
     return if end_date.blank? || start_date.blank? || property.nil?
 
-    initial_date = Date.parse(start_date)
-    final_date = Date.parse(end_date)
+    initial_date = start_date
+    final_date = end_date
     total_daily_rate = 0
 
     while initial_date <= final_date do
@@ -65,13 +65,13 @@ class Proposal < ApplicationRecord
     daily_value = 0
     max_daily_value = 0
     daily_rates.each do |daily_rate|
-      initial_date = Date.parse(daily_rate.start_date)
-      final_date = Date.parse(daily_rate.end_date)
+      initial_date = daily_rate.start_date
+      final_date = daily_rate.end_date
       if initial_date >= date && final_date <= date
         daily_value = daily_rate.daily_rate
         if daily_value > max_daily_value
           max_daily_value = daily_value
-          return 1000
+          return max_daily_value
         end
       end
     end

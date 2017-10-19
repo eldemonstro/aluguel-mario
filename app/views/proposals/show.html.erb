@@ -3,8 +3,8 @@
 <p><%= @proposal.property.title %></p>
 <p><%= @proposal.user_name %></p>
 <p><%= @proposal.email %></p>
-<p><%= @proposal.start_date %></p>
-<p><%= @proposal.end_date %></p>
+<p><%= @proposal.start_date.strftime("%d/%m/%Y") %></p>
+<p><%= @proposal.end_date.strftime("%d/%m/%Y") %></p>
 <p><%= @proposal.total_guests %></p>
 <p><%= @proposal.purpose %></p>
 <p><%= number_to_currency(

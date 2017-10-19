@@ -69,7 +69,7 @@ feature 'Visitor Send Proposal' do
 
     season_price = SeasonRate.create(name: 'Alta Temporada',
                       start_date: '01/12/2017', end_date: '25/12/2017',
-                      daily_rate: 800)
+                      daily_rate: 800, property: property)
 
 
     visit property_url(property)

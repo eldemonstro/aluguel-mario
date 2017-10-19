@@ -1,5 +1,5 @@
 <p><%= @season_rate.name %></p>
-<p><%= @season_rate.start_date %></p>
-<p><%= @season_rate.end_date %></p>
+<p><%= @season_rate.start_date.strftime("%d/%m/%Y") %></p>
+<p><%= @season_rate.end_date.strftime("%d/%m/%Y") %></p>
 <p><%= number_to_currency(
   @season_rate.daily_rate, unit: "R$ ", separator: ",", delimiter: "") %></p>
