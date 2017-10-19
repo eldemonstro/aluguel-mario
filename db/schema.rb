@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20171019204330) do
     t.datetime "updated_at", null: false
     t.integer "property_id"
     t.boolean "accept_usage_rules"
+    t.string "status", default: "waiting"
     t.index ["property_id"], name: "index_proposals_on_property_id"
   end
 

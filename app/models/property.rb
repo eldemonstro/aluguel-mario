@@ -36,4 +36,6 @@ class Property < ApplicationRecord
   validates :daily_rate, presence: {
     message: 'Você deve informar o Preço da Diária'
   }
+
+  
 end
