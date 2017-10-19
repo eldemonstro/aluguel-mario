@@ -78,7 +78,7 @@ feature 'Visitor Send Proposal' do
     fill_in 'Nome', with: 'Maria Silva'
     fill_in 'Email', with: 'mariasilva2000@gmail.com'
     fill_in 'Data Inicial', with: '02/12/2017'
-    fill_in 'Data Final', with: '07/12/2017'
+    fill_in 'Data Final', with: '06/12/2017'
     fill_in 'Quatidade de Pessoas', with: 5
     fill_in 'Propósito da Locação', with: 'Passeio de família'
     check 'Concordo com as regras de uso'
@@ -89,7 +89,7 @@ feature 'Visitor Send Proposal' do
     expect(page).to have_content 'Maria Silva'
     expect(page).to have_content 'mariasilva2000@gmail.com'
     expect(page).to have_content '02/12/2017'
-    expect(page).to have_content '07/12/2017'
+    expect(page).to have_content '06/12/2017'
     expect(page).to have_content '5'
     expect(page).to have_content 'Passeio de família'
     expect(page).to have_content 'R$ 20000,00'

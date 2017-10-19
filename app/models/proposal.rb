@@ -60,21 +60,9 @@ class Proposal < ApplicationRecord
   end
 
   def get_date_daily_rate(date)
-    daily_rates = property.season_rates
-
-    daily_value = 0
-    max_daily_value = 0
-    daily_rates.each do |daily_rate|
-      initial_date = daily_rate.start_date
-      final_date = daily_rate.end_date
-      if initial_date >= date && final_date <= date
-        daily_value = daily_rate.daily_rate
-        if daily_value > max_daily_value
-          max_daily_value = daily_value
-          return max_daily_value
-        end
-      end
-    end
-    property.daily_rate
+    daily_rates = property.season_rates.where(
+            "? >= start_date AND ? <= end_date", date, date).order(
+            daily_rate: :desc).first
+    daily_rates.nil? ? property.daily_rate : daily_rates.daily_rate
   end
 end
