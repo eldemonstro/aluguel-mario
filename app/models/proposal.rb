@@ -44,6 +44,8 @@ class Proposal < ApplicationRecord
     message: 'Aceite as Regras de Uso'
   }
 
+  validate :proposal_can_not_be_send_when_have_periodo_conflict
+
   def total_amount_calculator
     return if end_date.blank? || start_date.blank? || property.nil?
 
@@ -60,11 +62,30 @@ class Proposal < ApplicationRecord
     proposals = Proposal.where(property: property, status: 'waiting')
 
     proposals.each do |proposal|
-      if(proposal.start_date.to_date >= start_date.to_date && proposal.start_date.to_date <= end_date.to_date) || (proposal.end_date.to_date >= start_date.to_date && proposal.end_date.to_date <= end_date.to_date)
+      if(proposal.start_date.to_date >= start_date.to_date &&
+        proposal.start_date.to_date <= end_date.to_date) ||
+        (proposal.end_date.to_date >= start_date.to_date &&
+        proposal.end_date.to_date <= end_date.to_date)
+
         proposal.status = 'refused'
         proposal.save
       end
     end
 
   end
+
+  def proposal_can_not_be_send_when_have_periodo_conflict
+    proposals = Proposal.where(property: property)
+    proposals.each do |proposal|
+
+      if (proposal.start_date.to_date >= start_date.to_date &&
+          proposal.start_date.to_date <= end_date.to_date) ||
+          (proposal.end_date.to_date >= start_date.to_date &&
+          proposal.end_date.to_date <= end_date.to_date)
+
+          errors.add(:end_date, "can't be in the past")
+      end
+    end
+  end
+
 end
