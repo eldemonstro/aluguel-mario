@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       post 'accept', on: :member
     end
     resources :season_rates, only: [:show, :new, :create]
+    resources :unavailable_dates, only: [:new, :create]
 
     get 'search_by_type', on: :collection
     get 'search_by_location', on: :collection

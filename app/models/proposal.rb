@@ -5,8 +5,8 @@
 #  id                 :integer          not null, primary key
 #  user_name          :string
 #  email              :string
-#  start_date         :string
-#  end_date           :string
+#  start_date         :date
+#  end_date           :date
 #  total_guests       :integer
 #  purpose            :text
 #  total_amount       :decimal(, )
@@ -14,7 +14,7 @@
 #  updated_at         :datetime         not null
 #  property_id        :integer
 #  accept_usage_rules :boolean
-#  status             :string
+#  status             :string           default("waiting")
 #
 
 class Proposal < ApplicationRecord

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171019204330) do
+ActiveRecord::Schema.define(version: 20171020000111) do
 
   create_table "properties", force: :cascade do |t|
     t.string "location"
@@ -61,6 +61,16 @@ ActiveRecord::Schema.define(version: 20171019204330) do
     t.datetime "updated_at", null: false
     t.integer "property_id"
     t.index ["property_id"], name: "index_season_rates_on_property_id"
+  end
+
+  create_table "unavailable_dates", force: :cascade do |t|
+    t.string "name"
+    t.date "start_date"
+    t.date "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "property_id"
+    t.index ["property_id"], name: "index_unavailable_dates_on_property_id"
   end
 
 end
