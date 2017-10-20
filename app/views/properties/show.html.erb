@@ -1,4 +1,4 @@
-<p><%= @property.title %></p>
+<h3><%= @property.title %></h3>
 <p><%= @property.property_type.name %></p>
 <p><%= @property.location  %></p>
 <p><%= @property.area %></p>
@@ -15,7 +15,6 @@
 <% @property.proposals.each do |proposal| %>
   <% if proposal.status == 'waiting' %>
   <div>
-    <%= proposal.status %>
     <%= proposal.user_name %>
     <%= proposal.email %>
     <%= link_to "Aceitar proposta #{proposal.id}", accept_property_proposal_path(@property, proposal), method: :post%>
@@ -23,4 +22,4 @@
   <% end %>
 <% end %>
 
-<%= link_to 'Enviar Proposta', new_property_proposal_path(@property) %>
+<%= link_to 'Enviar Proposta', new_property_proposal_path(@property), class: 'btn btn-primary' %>
