@@ -63,7 +63,7 @@ feature 'Visitor Send Proposal' do
                               location: 'Campos do Jordão', area: '100m²',
                               description: 'Bela casa com piscina',
                               daily_rate: 600, rooms: 4, minimum_rent_days: 3,
-                              maximum_rent_days: 15, photo: 'casa.jpg',
+                              maximum_rent_days: 30, photo: 'casa.jpg',
                               maximum_occupancy: 10, usage_rules: 'sem animais',
                               property_type: property_type)
 
