@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Visitor see proporties at homepage' do
+feature 'Visitor visit  homepage to see all properties' do
   scenario 'successfuly' do
 
     property_type = PropertyType.create(name: 'Sítio na praia')
@@ -21,9 +21,24 @@ feature 'Visitor see proporties at homepage' do
 
     visit root_path
 
-    expect(page).to have_css('h2', property.title)
-    expect(page).to have_css('h2', property_2.title)
+    expect(page).to have_css('h2', text: property.title)
+    expect(page).to have_css('dd', text: property.location)
+    expect(page).to have_css('dd', text: property.property_type.name)
+    expect(page).to have_css('dd', text: property.description)
+    expect(page).to have_css('dd', text: "R$ 800,55")
+    expect(page).to have_css('dd', text: property.minimum_rent_days)
+
+    expect(page).to have_css('h2', text: property_2.title)
+    expect(page).to have_css('dd', text: property_2.location)
+    expect(page).to have_css('dd', text: property_2.property_type.name)
+    expect(page).to have_css('dd', text: property_2.description)
+    expect(page).to have_css('dd', text: "R$ 80,55")
+    expect(page).to have_css('dd', text: property_2.minimum_rent_days)
 
 
+  end
+  scenario 'and do not have any property registred' do
+    visit root_path
+    expect(page).to have_css('.alert-danger', text: 'Nenhum imóvel cadastrado')
   end
 end

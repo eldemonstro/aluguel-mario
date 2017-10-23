@@ -12,7 +12,19 @@
     <div>
       <%= flash[:message] %>
     </div>
-    
+    <div>
+      <%= form_tag(search_by_type_properties_path, method: "get") do %>
+        <%= label_tag(:name, 'Buscar por tipo do imóvel') %>
+        <%= text_field_tag(:name) %>
+        <%= submit_tag("Buscar por Tipo") %>
+      <% end %>
+
+      <%= form_tag(search_by_location_properties_path, method: "get") do %>
+        <%= label_tag(:location, 'Digite aqui uma localização para buscar') %>
+        <%= text_field_tag(:location) %>
+        <%= submit_tag("Buscar por localização") %>
+      <% end %>
+    </div>
     <div class="container">
       <%= yield %>
     </div>
