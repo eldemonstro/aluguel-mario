@@ -1,12 +1,12 @@
 <% if @property.errors.any? %>
   <ul>
-  <% @property.errors.messages.each do |message| %>
+  <% @property.errors.full_messages.each do |message| %>
     <li><%= message %></li>
   <% end %>
   </ul>
 <% end %>
 <%= form_for @property do |f| %>
-  <%= f.label :title , 'Título'%>
+  <%= f.label :title %>
   <%= f.text_field :title %>
 
   <%= f.label :property_type_id, 'Tipo do Imóvel'  %>

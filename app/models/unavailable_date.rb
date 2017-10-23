@@ -11,4 +11,18 @@
 #
 
 class UnavailableDate < ApplicationRecord
+  belongs_to :property
+
+  validates :name, presence: {
+    message: 'Você deve preencher o nome do período'
+  }
+
+  validates :start_date, presence: {
+    message: 'Você deve preencher a data inicial'
+  }
+
+  validates :end_date, presence: {
+    message: 'Você deve preencher a data final'
+  }
+
 end

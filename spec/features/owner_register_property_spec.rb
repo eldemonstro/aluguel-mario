@@ -56,7 +56,7 @@ feature 'Owner Register a Property' do
 
     click_on 'Cadastrar'
 
-    expect(page).to have_content 'Você deve informar o Título'
+    expect(page).to have_content 'Título não pode ficar em branco'
     expect(page).to have_content 'Você deve informar a Localização'
     expect(page).to have_content 'Você deve informar o Quantidade de Quartos'
     expect(page).to have_content 'Você deve informar o Preço da Diária'

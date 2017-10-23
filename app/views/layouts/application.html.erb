@@ -9,10 +9,12 @@
   </head>
 
   <body>
-    <div>
-      <%= flash[:message] %>
-    </div>
+    <div class="container">
+      <div>
+        <%= flash[:message] %>
+      </div>
 
-    <%= yield %>
+      <%= yield %>
+    </div>
   </body>
 </html>

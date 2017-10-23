@@ -5,7 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-<<<<<<< HEAD
 property_type = PropertyType.create(name: 'Casa de campo')
 property = Property.create(title: 'Casa de campo para férias',
                           location: 'Campos do Jordão', area: '100m²',
@@ -14,7 +13,7 @@ property = Property.create(title: 'Casa de campo para férias',
                           maximum_rent_days: 15, photo: 'casa.jpg',
                           maximum_occupancy: 10, usage_rules: 'sem animais',
                           property_type: property_type)
-=======
+                          
 property_type = PropertyType.create(name: 'Apartamento na praia')
 Property.create(title: 'Sitio legal', area: '300m2',
                 location: 'Juquitiba', description: 'Bem grande',
@@ -22,4 +21,3 @@ Property.create(title: 'Sitio legal', area: '300m2',
                 maximum_rent_days: 14, photo: 'photo_boa2.jpg',
                 maximum_occupancy: 15, usage_rules: 'Não pode criança',
                 property_type: property_type)
->>>>>>> master
