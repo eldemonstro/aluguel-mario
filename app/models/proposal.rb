@@ -49,8 +49,24 @@ class Proposal < ApplicationRecord
   def total_amount_calculator
     return if end_date.blank? || start_date.blank? || property.nil?
 
-    date_difference = Date.parse(end_date) - Date.parse(start_date)
-    self.total_amount = total_guests * date_difference * property.daily_rate
+    initial_date = start_date
+    final_date = end_date
+    total_daily_rate = 0
+
+    while initial_date <= final_date do
+      daily_rate = get_date_daily_rate(initial_date)
+      total_daily_rate += daily_rate
+      initial_date += 1
+    end
+
+    self.total_amount = total_guests * total_daily_rate
+  end
+
+  def get_date_daily_rate(date)
+    daily_rates = property.season_rates.where(
+            "? >= start_date AND ? <= end_date", date, date).order(
+            daily_rate: :desc).first
+    daily_rates.nil? ? property.daily_rate : daily_rates.daily_rate
   end
 
   def accept

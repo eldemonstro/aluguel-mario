@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018205300) do
+ActiveRecord::Schema.define(version: 20171019204330) do
 
   create_table "properties", force: :cascade do |t|
     t.string "location"
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 20171018205300) do
   create_table "proposals", force: :cascade do |t|
     t.string "user_name"
     t.string "email"
-    t.string "start_date"
-    t.string "end_date"
+    t.date "start_date"
+    t.date "end_date"
     t.integer "total_guests"
     t.text "purpose"
     t.decimal "total_amount"
@@ -50,6 +50,17 @@ ActiveRecord::Schema.define(version: 20171018205300) do
     t.boolean "accept_usage_rules"
     t.string "status", default: "waiting"
     t.index ["property_id"], name: "index_proposals_on_property_id"
+  end
+
+  create_table "season_rates", force: :cascade do |t|
+    t.string "name"
+    t.date "start_date"
+    t.date "end_date"
+    t.decimal "daily_rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "property_id"
+    t.index ["property_id"], name: "index_season_rates_on_property_id"
   end
 
 end

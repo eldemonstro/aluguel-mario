@@ -1,0 +1,26 @@
+<h1>Cadastrar Temporada</h1>
+
+<% if @season_rate.errors.any? %>
+  <ul>
+    <% @season_rate.errors.messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for [@property, @season_rate] do |f| %>
+  <%= f.label :name, 'Nome' %>
+  <%= f.text_field :name %>
+
+  <%= f.label :start_date, 'Data Inicial' %>
+  <%= f.text_field :start_date %>
+
+  <%= f.label :end_date, 'Data Final' %>
+  <%= f.text_field :end_date %>
+
+  <%= f.label :daily_rate, 'Valor da Diária' %>
+  <%= f.text_field :daily_rate %>
+
+  <%= f.submit 'Enviar' %>
+
+<% end %>
