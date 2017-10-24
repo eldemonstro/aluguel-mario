@@ -7,44 +7,62 @@
     </ul>
   </div>
 <% end %>
-<%= form_for @property do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+<div class="row">
+  <div class="col-md-6">
+    <h4>Cadastrar um imóvel</h4>
+    <hr>
+    <%= form_for @property do |f| %>
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :property_type_id, 'Tipo do Imóvel'  %>
+        <%= f.collection_select(:property_type_id, @property_types,
+                                :id, :name, {},class: 'form-control') %>
+      </div>
+      <div class="form-group">
+        <%= f.label :location , 'Localização'%>
+        <%= f.text_field :location, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :area , 'Área'%>
+        <%= f.text_field :area, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :description , 'Descrição'%>
+        <%= f.text_field :description, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :daily_rate , 'Valor da Diária'%>
+        <%= f.text_field :daily_rate, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :rooms , 'Quantidade de Quartos'%>
+        <%= f.text_field :rooms, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :minimum_rent_days , 'Mínimo de Diárias'%>
+        <%= f.text_field :minimum_rent_days, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :maximum_rent_days , 'Máximo de Diárias'%>
+        <%= f.text_field :maximum_rent_days, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :maximum_occupancy , 'Ocupação Máxima'%>
+        <%= f.text_field :maximum_occupancy, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :usage_rules , 'Regras de Uso'%>
+        <%= f.text_field :usage_rules, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :photo , 'Foto'%>
+        <%= f.text_field :photo, class: "form-control" %>
+      </div>
 
-  <%= f.label :property_type_id, 'Tipo do Imóvel'  %>
-  <%= f.collection_select(:property_type_id, @property_types, :id, :name) %>
-
-  <%= f.label :location , 'Localização'%>
-  <%= f.text_field :location %>
-
-  <%= f.label :area , 'Área'%>
-  <%= f.text_field :area %>
-
-  <%= f.label :description , 'Descrição'%>
-  <%= f.text_field :description %>
-
-  <%= f.label :daily_rate , 'Valor da Diária'%>
-  <%= f.text_field :daily_rate %>
-
-  <%= f.label :rooms , 'Quantidade de Quartos'%>
-  <%= f.text_field :rooms %>
-
-  <%= f.label :minimum_rent_days , 'Mínimo de Diárias'%>
-  <%= f.text_field :minimum_rent_days %>
-
-  <%= f.label :maximum_rent_days , 'Máximo de Diárias'%>
-  <%= f.text_field :maximum_rent_days %>
-
-  <%= f.label :maximum_occupancy , 'Ocupação Máxima'%>
-  <%= f.text_field :maximum_occupancy %>
-
-  <%= f.label :usage_rules , 'Regras de Uso'%>
-  <%= f.text_field :usage_rules %>
-
-  <%= f.label :photo , 'Foto'%>
-  <%= f.text_field :photo %>
-
-  <%= f.submit 'Cadastrar' %>
-
-
-<% end %>
+      <%= f.submit 'Cadastrar', class: "btn btn-primary" %>
+    <% end %>
+  </div
+</div>
