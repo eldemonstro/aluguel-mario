@@ -1,16 +1,18 @@
 <%= flash[:error] %>
-<%= link_to 'Cadastrar Imóvel', new_property_path %>
 
-<div>
-  <%= form_tag(search_by_type_properties_path, method: "get") do %>
-    <%= label_tag(:name, 'Buscar por tipo do imóvel') %>
-    <%= text_field_tag(:name) %>
-    <%= submit_tag("Buscar por Tipo") %>
+
+<div class="row">
+  <% if @properties.empty? %>
+    <div class="alert alert-danger" role="alert">
+      Nenhum imóvel cadastrado
+    </div>
+  <% else %>
+    <% @properties.each do |property| %>
+    <div class="col-4">
+
+      <%= render partial: '/shared/property_thumbnail', locals: {property: property}%>
+    </div>
+    <% end %>
   <% end %>
 
-  <%= form_tag(search_by_location_properties_path, method: "get") do %>
-    <%= label_tag(:location, 'Digite aqui uma localização para buscar') %>
-    <%= text_field_tag(:location) %>
-    <%= submit_tag("Buscar por localização") %>
-  <% end %>
 </div>
