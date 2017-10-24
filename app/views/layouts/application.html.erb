@@ -17,14 +17,17 @@
       <%= form_tag(search_by_type_properties_path, method: "get") do %>
         <%= label_tag(:name, 'Buscar por tipo do imóvel') %>
         <%= text_field_tag(:name) %>
-        <%= submit_tag("Buscar por Tipo") %>
+        <%= submit_tag "Buscar por Tipo", class: 'btn btn-sm btn-secondary' %>
       <% end %>
 
       <%= form_tag(search_by_location_properties_path, method: "get") do %>
         <%= label_tag(:location, 'Digite aqui uma localização para buscar') %>
         <%= text_field_tag(:location) %>
-        <%= submit_tag("Buscar por localização") %>
+        <%= submit_tag "Buscar por localização", class: 'btn btn-sm btn-secondary' %>
       <% end %>
+
+      <%= link_to 'Cadastrar Imóvel', new_property_path, class: 'btn btn-sm btn-secondary' %>
+
     </div>
     <div class="container">
       <%= yield %>

@@ -21,14 +21,14 @@ feature 'Visitor visit  homepage to see all properties' do
 
     visit root_path
 
-    expect(page).to have_css('h2', text: property.title)
+    expect(page).to have_css('h4', text: property.title)
     expect(page).to have_css('dd', text: property.location)
     expect(page).to have_css('dd', text: property.property_type.name)
     expect(page).to have_css('dd', text: property.description)
     expect(page).to have_css('dd', text: "R$ 800,55")
     expect(page).to have_css('dd', text: property.minimum_rent_days)
 
-    expect(page).to have_css('h2', text: property_2.title)
+    expect(page).to have_css('h4', text: property_2.title)
     expect(page).to have_css('dd', text: property_2.location)
     expect(page).to have_css('dd', text: property_2.property_type.name)
     expect(page).to have_css('dd', text: property_2.description)
