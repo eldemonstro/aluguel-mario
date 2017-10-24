@@ -1,0 +1,19 @@
+<div class="card" style="width: 20rem;">
+  <img class="card-img-top" src="http://www.catholicme.com/wp-content/themes/mts_newstoday/images/nothumb-newstoday-widgetfull.png" alt="Card image cap">
+  <div class="card-body">
+    <h4 class="card-title"><%= link_to property.title, property %></h4>
+    <dl class="row card-text">
+      <dt>Tipo da propriedade: </dt>
+      <dd><%= property.property_type.name %></dd>
+      <dt>Localização: </dt>
+      <dd><%= property.location %></dd>
+      <dt>Diaria: </dt>
+      <dd><%= number_to_currency(property.daily_rate)%></dd>
+      <dt>Periodo minimo: </dt>
+      <dd><%= property.minimum_rent_days %></dd>
+      <dt>Descrição: </dt>
+      <dd><%= property.description %></dd>
+    </dl>
+    <%= link_to 'Detalhes', property, class: 'btn btn-sm btn-primary' %>
+  </div>
+</div>
