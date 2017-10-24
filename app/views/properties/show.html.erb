@@ -1,27 +1,77 @@
-<p><%= @property.title %></p>
-<p><%= @property.property_type.name %></p>
-<p><%= @property.location  %></p>
-<p><%= @property.area %></p>
-<p><%= @property.description %></p>
-<p><%= number_to_currency(@property.daily_rate) %></p>
-<p><%= @property.rooms %></p>
-<p><%= @property.minimum_rent_days %></p>
-<p><%= @property.maximum_rent_days %></p>
-<p><%= @property.photo %></p>
-<p><%= @property.maximum_occupancy %></p>
-<p><%= @property.usage_rules %></p>
 
-<% @property.proposals.each do |proposal| %>
-  <% if proposal.status == 'waiting' %>
-  <div>
-    <%= proposal.status %>
-    <%= proposal.user_name %>
-    <%= proposal.email %>
-    <%= link_to "Aceitar proposta #{proposal.id}", accept_property_proposal_path(@property, proposal), method: :post%>
+<h1>Imóvel</h1>
+<hr>
+<dl class="row">
+  <dt class="col-sm-3">Título:</dt>
+  <dd class="col-sm-9"><%= @property.title %></dd>
+
+  <dt class="col-sm-3">Tipo da propriedade:</dt>
+  <dd class="col-sm-9"><%= @property.property_type.name %></dd>
+
+  <dt class="col-sm-3">Localização:</dt>
+  <dd class="col-sm-9"><%= @property.location  %></dd>
+
+  <dt class="col-sm-3">Area:</dt>
+  <dd class="col-sm-9"><%= @property.area %></dd>
+
+  <dt class="col-sm-3">Descrição:</dt>
+  <dd class="col-sm-9"><%= @property.description %></dd>
+
+  <dt class="col-sm-3">Valor da diária:</dt>
+  <dd class="col-sm-9"><%= number_to_currency(@property.daily_rate) %></dd>
+
+  <dt class="col-sm-3">Quantidade de quartos</dt>
+  <dd class="col-sm-9"><%= @property.rooms %></dd>
+
+  <dt class="col-sm-3">Período maximo para locação:</dt>
+  <dd class="col-sm-9"><%= @property.minimum_rent_days %> dias</dd>
+
+  <dt class="col-sm-3">Período minimo para locação:</dt>
+  <dd class="col-sm-9"><%= @property.maximum_rent_days %> dias</dd>
+
+  <dt class="col-sm-3">Foto:</dt>
+  <dd class="col-sm-9"><%= @property.photo %></dd>
+
+  <dt class="col-sm-3">Maximo de convidados</dt>
+  <dd class="col-sm-9"><%= @property.maximum_occupancy %></dd>
+
+  <dt class="col-sm-3">Regras de uso:</dt>
+  <dd class="col-sm-9"><%= @property.usage_rules %></dd>
+
+  <dt class="col-sm-3">Propostas</dt>
+    <dd class="col-sm-9">
+
+        <% @property.proposals.each do |proposal| %>
+          <% if proposal.status == 'waiting' %>
+          <dl class="row">
+            <dt class="col-sm-3">Nome do usuario:</dt>
+            <dd class="col-sm-9"><%= proposal.user_name %></dd>
+
+            <dt class="col-sm-3">Email do usuario:</dt>
+            <dd class="col-sm-9"><%= proposal.email %></dd>
+
+            <dt class="col-sm-3">Valor total da proposta:</dt>
+            <dd class="col-sm-9"><%= number_to_currency(proposal.total_amount_calculator) %><dd class="col-sm-9">
+            <%= link_to "Aceitar proposta #{proposal.id}", accept_property_proposal_path(@property, proposal), {method: :post, class: 'btn btn-sm btn-success'}%>
+            <hr>
+          </dl>
+
+          <% end %>
+        <% end %>
+    </dd>
+  </dl>
+</dl>
+
+
+<div class="row action-buttons">
+  <div class="col-md-3">
+    <%= link_to 'Enviar Proposta', new_property_proposal_path(@property), class: 'btn btn-primary' %>
   </div>
-  <% end %>
-<% end %>
+  <div class="col-md-3">
+    <%= link_to 'Cadastrar preço de Temporada', new_property_season_rate_path(@property), class: 'btn btn-primary' %>
+  </div>
+  <div class="col-md-3">
+    <%= link_to 'Cadastrar Período Indisponível', new_property_unavailable_date_path(@property), class: 'btn btn-primary' %>
+  </div>
 
-<%= link_to 'Enviar Proposta', new_property_proposal_path(@property) %>
-<%= link_to 'Cadastrar preço de Temporada', new_property_season_rate_path(@property) %>
-<%= link_to 'Cadastrar Período Indisponível', new_property_unavailable_date_path(@property) %>
+</div>

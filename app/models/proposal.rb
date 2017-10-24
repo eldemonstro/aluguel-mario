@@ -72,6 +72,7 @@ class Proposal < ApplicationRecord
 
   def accept
     status = 'accepted'
+    save
     refuse_proposals
   end
 
@@ -92,7 +93,7 @@ class Proposal < ApplicationRecord
   end
 
   def proposal_can_not_be_send_when_have_periodo_conflict
-    proposals = Proposal.where(property: property)
+    proposals = Proposal.where(property: property, status: 'accepted')
     proposals.each do |proposal|
 
       if (proposal.start_date.to_date >= start_date.to_date &&
@@ -100,7 +101,7 @@ class Proposal < ApplicationRecord
           (proposal.end_date.to_date >= start_date.to_date &&
           proposal.end_date.to_date <= end_date.to_date)
 
-          errors.add(:end_date, "can't be in the past")
+          errors.add(:end_date, "Não é possivel enviar uma proposta para este periodo")
       end
     end
   end
