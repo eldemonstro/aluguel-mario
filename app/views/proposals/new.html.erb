@@ -10,27 +10,39 @@
 <% end %>
 
 <%= form_for [@property, @proposal] do |f| %>
-  <%= f.label :user_name, 'Nome' %>
-  <%= f.text_field :user_name, placeholder: 'Digite seu nome' %>
+  <div class="form-group">
+    <%= f.label :user_name, 'Nome' %>
+    <%= f.text_field :user_name, placeholder: 'Digite seu nome',
+                    class: 'form-control col-md-6' %>
+  </div>
 
-  <%= f.label :email, 'Email' %>
-  <%= f.text_field :email, placeholder: 'Digite seu email' %>
-
-  <%= f.label :start_date, 'Data Inicial' %>
-  <%= f.text_field :start_date %>
-
-  <%= f.label :end_date, 'Data Final' %>
-  <%= f.text_field :end_date %>
-
-  <%= f.label :total_guests, 'Quatidade de Pessoas' %>
-  <%= f.number_field :total_guests %>
-
-  <%= f.label :purpose, 'Propósito da Locação' %>
-  <%= f.text_area :purpose %>
-
-  <%= f.label :accept_usage_rules, 'Concordo com as regras de uso' %>
-  <%= f.check_box :accept_usage_rules %>
-
-  <%= f.submit 'Enviar' %>
+  <div class="form-group">
+    <%= f.label :email, 'Email' %>
+    <%= f.text_field :email, placeholder: 'Digite seu email',
+                    class: 'form-control col-md-6' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :start_date, 'Data Inicial' %>
+    <%= f.text_field :start_date, class: 'form-control col-md-6' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :end_date, 'Data Final' %>
+    <%= f.text_field :end_date, class: 'form-control col-md-6' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :total_guests, 'Quatidade de Pessoas' %>
+    <%= f.number_field :total_guests, class: 'form-control col-md-6' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :purpose, 'Propósito da Locação' %>
+    <%= f.text_area :purpose, class: 'form-control col-md-6' %>
+  </div>
+  <div class="form-check">
+    <%= label_tag :accept_usage_rules, class: 'form-check-label' do %>
+      <%= f.check_box :accept_usage_rules, class: 'form-check-input' %>
+      Concordo com as regras de uso
+    <% end %>
+  </div>
+  <%= f.submit 'Enviar', class: 'btn btn-primary' %>
 
 <% end %>

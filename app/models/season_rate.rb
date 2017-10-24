@@ -4,8 +4,8 @@
 #
 #  id          :integer          not null, primary key
 #  name        :string
-#  start_date  :string
-#  end_date    :string
+#  start_date  :date
+#  end_date    :date
 #  daily_rate  :decimal(, )
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null

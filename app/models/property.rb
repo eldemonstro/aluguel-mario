@@ -23,10 +23,10 @@ class Property < ApplicationRecord
   belongs_to :property_type
   has_many :proposals
   has_many :season_rates
+  has_many :unavailable_dates
 
-  validates :title, presence: {
-    message: 'Você deve informar o Título'
-  }
+  validates :title, presence: true
+  
   validates :location, presence: {
     message: 'Você deve informar a Localização'
   }
@@ -37,5 +37,5 @@ class Property < ApplicationRecord
     message: 'Você deve informar o Preço da Diária'
   }
 
-  
+
 end

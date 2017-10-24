@@ -5,8 +5,8 @@
 #  id                 :integer          not null, primary key
 #  user_name          :string
 #  email              :string
-#  start_date         :string
-#  end_date           :string
+#  start_date         :date
+#  end_date           :date
 #  total_guests       :integer
 #  purpose            :text
 #  total_amount       :decimal(, )
@@ -14,7 +14,7 @@
 #  updated_at         :datetime         not null
 #  property_id        :integer
 #  accept_usage_rules :boolean
-#  status             :string
+#  status             :string           default("waiting")
 #
 
 class Proposal < ApplicationRecord
@@ -45,6 +45,7 @@ class Proposal < ApplicationRecord
   }
 
   validate :proposal_can_not_be_send_when_have_periodo_conflict
+  validate :refuse_proposals_based_on_unavalable_date
 
   validate :proposal_can_not_be_send_when_have_more_people_than_alowed
 
@@ -68,7 +69,7 @@ class Proposal < ApplicationRecord
 
   def get_date_daily_rate(date)
     daily_rates = property.season_rates.where(
-            "? >= start_date AND ? <= end_date", date, date).order(
+            ":date >= start_date AND :date <= end_date", {date: date}).order(
             daily_rate: :desc).first
     daily_rates.nil? ? property.daily_rate : daily_rates.daily_rate
   end
@@ -124,4 +125,13 @@ class Proposal < ApplicationRecord
     end
   end
 
+  def refuse_proposals_based_on_unavalable_date
+    unavailable_dates = UnavailableDate.where(
+        "? >= start_date OR ? <= end_date", start_date, end_date)
+
+    if unavailable_dates.present?
+      errors.add(:property,
+      'Sua proposta foi rejeitada automaticamente. Verifique as datas indisponíveis nos detalhes do imóvel.')
+    end
+  end
 end

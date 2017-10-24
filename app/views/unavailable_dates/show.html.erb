@@ -1,0 +1,11 @@
+<h4>Nome do imóvel:</h4>
+<h4><%= @unavailable_date.property.title %></h4>
+<br>
+<strong><p>Nome do Período Indisponível</p></strong>
+<p><%= @unavailable_date.name %></p>
+<strong><p>Data Inicial</p></strong>
+<p><%= I18n.l @unavailable_date.start_date %></p>
+<strong><p>Data Final</p></strong>
+<p><%= I18n.l @unavailable_date.end_date %></p>
+<br>
+<%= link_to 'Voltar', property_path(@unavailable_date.property) %>

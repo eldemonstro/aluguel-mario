@@ -9,3 +9,5 @@
 <p><%= @proposal.purpose %></p>
 <p><%= number_to_currency(@proposal.total_amount) %>
 </p>
+<br>
+<%= link_to 'Voltar', property_path(@proposal.property) %>
