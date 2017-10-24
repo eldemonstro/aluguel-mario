@@ -1,9 +1,11 @@
 <% if @property.errors.any? %>
-  <ul>
-  <% @property.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-  <% end %>
-  </ul>
+  <div class="alert alert-danger" role="alert">
+    <ul>
+    <% @property.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
 <% end %>
 <%= form_for @property do |f| %>
   <%= f.label :title %>

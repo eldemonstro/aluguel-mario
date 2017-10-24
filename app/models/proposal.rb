@@ -107,10 +107,11 @@ class Proposal < ApplicationRecord
 
   def refuse_proposals_based_on_unavalable_date
     unavailable_dates = UnavailableDate.where(
-        "? >= start_date OR ? <= end_date", start_date, end_date)
+        ":start_date between start_date AND end_date OR :end_date between
+        start_date AND end_date", {start_date: start_date, end_date: end_date})
 
     if unavailable_dates.present?
-      errors.add(:property,
+      errors.add(:proposal,
       'Sua proposta foi rejeitada automaticamente. Verifique as datas indisponíveis nos detalhes do imóvel.')
     end
   end

@@ -3,6 +3,7 @@ pt-BR:
   activerecord:
     models:
       property: "Imóvel"
+      proposal: "Proposta"
     attributes:
       property:
         title: "Título"

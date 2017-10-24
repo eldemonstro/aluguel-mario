@@ -1,10 +1,12 @@
 <h1>Enviar Proposta</h1>
 <% if @proposal.errors.any? %>
-  <ul>
-  <% @proposal.errors.messages.each do |message| %>
-    <li><%= message %></li>
-  <% end %>
-  </ul>
+  <div class="alert alert-danger" role="alert">
+    <ul>
+    <% @proposal.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
 <% end %>
 
 <%= form_for [@property, @proposal] do |f| %>
