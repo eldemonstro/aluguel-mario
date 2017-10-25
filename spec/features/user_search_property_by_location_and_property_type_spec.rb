@@ -23,7 +23,7 @@ feature 'User search for a property by property type' do
 
     visit root_path
 
-    fill_in 'Buscar por tipo do imóvel', with: 'Apartamento na praia'
+    fill_in 'Busca por Tipo do Imóvel', with: 'Apartamento na praia'
 
     click_on 'Buscar por Tipo'
 
@@ -50,7 +50,7 @@ feature 'User search for a property by property type' do
 
     visit root_path
 
-    fill_in 'Buscar por tipo do imóvel', with: 'Apartamento na praia'
+    fill_in 'Busca por Tipo do Imóvel', with: 'Apartamento na praia'
 
     click_on 'Buscar por Tipo'
 
