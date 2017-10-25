@@ -11,5 +11,6 @@ FactoryBot.define do
     photo 'foto.png'
     maximum_occupancy 30
     usage_rules 'Não pode cavalo'
+    photo { File.new("#{Rails.root}/spec/support/fixtures/image.jpg") }
   end
 end

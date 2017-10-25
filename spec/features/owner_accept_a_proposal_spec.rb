@@ -4,13 +4,7 @@ feature 'Owner accept a proposal' do
   scenario 'successfuly' do
 
     property_type = PropertyType.create(name: 'Apartamento na praia')
-
-    property = Property.create(title: 'Sitio legal', area: '300m2',
-                    location: 'Juquitiba', description: 'Bem grande',
-                    daily_rate: 800.55, rooms: 12, minimum_rent_days: 3,
-                    maximum_rent_days: 14, photo: 'photo_boa2.jpg',
-                    maximum_occupancy: 15, usage_rules: 'Não pode criança',
-                    property_type: property_type)
+    property = create(:property, property_type: property_type)
 
     proposal_1 = Proposal.create(user_name: 'Antonio', email: 'a@a.com',
                                  start_date: '01/01/2017', end_date: '07/01/2017',
@@ -43,12 +37,7 @@ feature 'Owner accept a proposal' do
     scenario 'and do not find a proposal with the same date as another already accepted' do
       property_type = PropertyType.create(name: 'Apartamento na praia')
 
-      property = Property.create(title: 'Sitio legal', area: '300m2',
-                      location: 'Juquitiba', description: 'Bem grande',
-                      daily_rate: 800.55, rooms: 12, minimum_rent_days: 3,
-                      maximum_rent_days: 14, photo: 'photo_boa2.jpg',
-                      maximum_occupancy: 15, usage_rules: 'Não pode criança',
-                      property_type: property_type)
+      property = create(:property, property_type: property_type)
 
       proposal_1 = Proposal.create(user_name: 'Antonio', email: 'a@a.com',
                                    start_date: '01/01/2017', end_date: '07/01/2017',

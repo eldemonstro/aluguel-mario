@@ -30,7 +30,7 @@
   <dd class="col-sm-9"><%= @property.maximum_rent_days %> dias</dd>
 
   <dt class="col-sm-3">Foto:</dt>
-  <dd class="col-sm-9"><%= @property.photo %></dd>
+  <dd class="col-sm-9"><%= image_tag @property.photo.url(:medium) %></dd>
 
   <dt class="col-sm-3">Maximo de convidados</dt>
   <dd class="col-sm-9"><%= @property.maximum_occupancy %></dd>
