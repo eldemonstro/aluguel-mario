@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171020000111) do
+ActiveRecord::Schema.define(version: 20171024235829) do
 
   create_table "properties", force: :cascade do |t|
     t.string "location"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20171020000111) do
     t.integer "rooms"
     t.integer "minimum_rent_days"
     t.integer "maximum_rent_days"
-    t.string "photo"
     t.integer "maximum_occupancy"
     t.text "usage_rules"
     t.datetime "created_at", null: false
