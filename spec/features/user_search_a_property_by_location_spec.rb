@@ -25,9 +25,9 @@ feature 'User search for a property by location' do
 
     visit root_path
 
-    fill_in 'Digite aqui uma localização para buscar', with: 'Juquitiba'
+    fill_in 'Busca por Localização', with: 'Juquitiba'
 
-    click_on 'Buscar por localização'
+    click_on 'Buscar por Localização'
 
     expect(page).to have_content property.title
     expect(page).to have_content property.property_type.name

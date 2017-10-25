@@ -9,25 +9,35 @@
   </head>
 
   <body>
-    
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <%= link_to 'Aluga Temporada', root_path, class: 'navbar-brand' %>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <%= link_to 'Home', root_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Cadastrar Imóvel', new_property_path, class: 'nav-link' %>
+            </li>
+          </ul>
+          <div>
+            <%= form_tag(search_by_type_properties_path, method: "get", class: 'form-inline') do %>
+              <%= label_tag :name, 'Busca por Tipo do Imóvel', class: 'text-light mr-sm-2' %>
+              <%= text_field_tag :name, nil, class: 'form-control mr-sm-2' %>
+              <%= submit_tag "Buscar por Tipo", class: 'btn btn-outline-secondary mr-sm-2' %>
+            <% end %>
+          </div>
+          <div>
+            <%= form_tag(search_by_location_properties_path, method: "get", class: 'form-inline') do %>
+              <%= label_tag :location, 'Busca por Localização', class: 'text-light mr-sm-2' %>
+              <%= text_field_tag :location, nil, class: 'form-control mr-sm-2' %>
+              <%= submit_tag "Buscar por Localização", class: 'btn btn-outline-secondary mr-sm-2' %>
+            <% end %>
+          </div>
+        </div>
+      </nav>
     <div>
       <%= flash[:message] %>
-    </div>
-    <div>
-      <%= form_tag(search_by_type_properties_path, method: "get") do %>
-        <%= label_tag(:name, 'Buscar por tipo do imóvel') %>
-        <%= text_field_tag(:name) %>
-        <%= submit_tag "Buscar por Tipo", class: 'btn btn-sm btn-secondary' %>
-      <% end %>
-
-      <%= form_tag(search_by_location_properties_path, method: "get") do %>
-        <%= label_tag(:location, 'Digite aqui uma localização para buscar') %>
-        <%= text_field_tag(:location) %>
-        <%= submit_tag "Buscar por localização", class: 'btn btn-sm btn-secondary' %>
-      <% end %>
-
-      <%= link_to 'Cadastrar Imóvel', new_property_path, class: 'btn btn-sm btn-secondary' %>
-
     </div>
     <div class="container">
       <%= yield %>
