@@ -14,7 +14,6 @@ class ProposalsController < ApplicationController
     @proposal = Proposal.new(proposal_params)
     @proposal.property = @property
     @proposal.total_amount_calculator
-    
     if @proposal.save
       flash[:message] = 'Proposta enviada com sucesso'
       redirect_to property_proposal_path(@property, @proposal)

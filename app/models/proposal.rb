@@ -47,6 +47,10 @@ class Proposal < ApplicationRecord
   validate :proposal_can_not_be_send_when_have_periodo_conflict
   validate :refuse_proposals_based_on_unavalable_date
 
+  validate :proposal_can_not_be_send_when_have_more_people_than_alowed
+
+  validate :rent_interval_must_respect_the_maximun_and_minimun_rent_days
+
   def total_amount_calculator
     return if end_date.blank? || start_date.blank? || property.nil?
 
@@ -96,12 +100,27 @@ class Proposal < ApplicationRecord
     proposals = Proposal.where(property: property, status: 'accepted')
     proposals.each do |proposal|
 
-      if (proposal.start_date.to_date >= start_date.to_date &&
-          proposal.start_date.to_date <= end_date.to_date) ||
-          (proposal.end_date.to_date >= start_date.to_date &&
+      if (proposal.start_date >= start_date &&
+          proposal.start_date <= end_date) ||
+          (proposal.end_date >= start_date &&
           proposal.end_date.to_date <= end_date.to_date)
 
           errors.add(:end_date, "Não é possivel enviar uma proposta para este periodo")
+      end
+    end
+  end
+
+  def proposal_can_not_be_send_when_have_more_people_than_alowed
+    if total_guests && total_guests > property.maximum_occupancy
+      errors.add(:total_guests, 'Máximo de ocupantes deve ser respeitado')
+    end
+  end
+
+  def rent_interval_must_respect_the_maximun_and_minimun_rent_days
+    if start_date && end_date
+      interval = end_date - start_date
+      if interval.to_i > property.maximum_rent_days
+        errors.add(:end_date, 'Máximo de dias deve ser respeitado')
       end
     end
   end

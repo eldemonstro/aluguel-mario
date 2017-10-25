@@ -16,11 +16,13 @@ gem 'turbolinks', '~> 5'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'jquery-rails'
 
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'capybara'
   gem 'annotate', require: false
+  gem 'factory_bot_rails'
 end
 
 group :test do
