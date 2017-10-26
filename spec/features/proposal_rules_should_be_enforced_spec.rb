@@ -4,12 +4,7 @@ feature 'Visitor send a invalid proposal' do
   scenario 'successfuly' do
     property_type = PropertyType.create(name: 'Casa na praia')
 
-    property = Property.create(title: 'Casa grande', area: '300m2',
-                    location: 'Maresias', description: 'Casa grande, com o pé na areia',
-                    daily_rate: 800.55, rooms: 5, minimum_rent_days: 1,
-                    maximum_rent_days: 7, photo: 'photo_boa2.jpg',
-                    maximum_occupancy: 15, usage_rules: 'Não pode ter musica alta',
-                    property_type: property_type)
+    property = create(:property , property_type: property_type, maximum_occupancy: 10)
 
    visit property_path(property)
 
@@ -33,12 +28,8 @@ feature 'Visitor send a invalid proposal' do
   scenario 'whith a maximum rent day' do
     property_type = PropertyType.create(name: 'Casa na praia')
 
-    property = Property.create(title: 'Casa grande', area: '300m2',
-                    location: 'Maresias', description: 'Casa grande, com o pé na areia',
-                    daily_rate: 800.55, rooms: 5, minimum_rent_days: 1,
-                    maximum_rent_days: 7, photo: 'photo_boa2.jpg',
-                    maximum_occupancy: 15, usage_rules: 'Não pode ter musica alta',
-                    property_type: property_type)
+    property = create(:property , property_type: property_type, maximum_rent_days: 9)
+
 
     visit property_path(property)
 
@@ -62,12 +53,8 @@ feature 'Visitor send a invalid proposal' do
   scenario 'following all the specs' do
     property_type = PropertyType.create(name: 'Casa na praia')
 
-    property = Property.create(title: 'Casa grande', area: '300m2',
-                    location: 'Maresias', description: 'Casa grande, com o pé na areia',
-                    daily_rate: 800.55, rooms: 5, minimum_rent_days: 1,
-                    maximum_rent_days: 7, photo: 'photo_boa2.jpg',
-                    maximum_occupancy: 15, usage_rules: 'Não pode ter musica alta',
-                    property_type: property_type)
+    property = create(:property , property_type: property_type)
+
 
     visit property_path(property)
 

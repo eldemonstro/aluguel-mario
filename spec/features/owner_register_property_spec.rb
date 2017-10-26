@@ -17,7 +17,7 @@ feature 'Owner Register a Property' do
     fill_in 'Máximo de Diárias', with: 20
     fill_in 'Ocupação Máxima', with: 15
     fill_in 'Regras de Uso', with: 'Proibido cão e crianças'
-    fill_in 'Foto', with: 'foto.jpg'
+    attach_file('Foto', "#{Rails.root}/spec/support/fixtures/image.jpg")
 
     click_on 'Cadastrar'
 
@@ -34,7 +34,8 @@ feature 'Owner Register a Property' do
     expect(page).to have_content '20'
     expect(page).to have_content '15'
     expect(page).to have_content 'Proibido cão e crianças'
-    expect(page).to have_content 'foto.jpg'
+    expect(page).to have_xpath("//img[contains(@src,'image.jpg')]")
+
 
   end
   scenario 'and forget a field' do
@@ -52,7 +53,6 @@ feature 'Owner Register a Property' do
     fill_in 'Máximo de Diárias', with: ''
     fill_in 'Ocupação Máxima', with: ''
     fill_in 'Regras de Uso', with: ''
-    fill_in 'Foto', with: ''
 
     click_on 'Cadastrar'
 

@@ -17,12 +17,9 @@ feature 'Visitor Use Navigation Menu' do
   scenario 'Search property by location' do
     property_type = PropertyType.create(name: 'Sitio para festa')
 
-    property = Property.create(title: 'Sitio legal', area: '300m2',
-                     location: 'Juquitiba', description: 'Bem grande',
-                     daily_rate: 800.55, rooms: 12, minimum_rent_days: 3,
-                     maximum_rent_days: 14, photo: 'photo_boa2.jpg',
-                     maximum_occupancy: 15, usage_rules: 'Não pode criança',
-                     property_type: property_type)
+
+    property = create(:property, property_type: property_type,
+                      location: 'Juquitiba')
 
     visit root_path
 
@@ -35,12 +32,8 @@ feature 'Visitor Use Navigation Menu' do
   scenario 'Search Property by name' do
     property_type = PropertyType.create(name: 'Sitio para festa')
 
-    property = Property.create(title: 'Sitio legal', area: '300m2',
-                     location: 'Juquitiba', description: 'Bem grande',
-                     daily_rate: 800.55, rooms: 12, minimum_rent_days: 3,
-                     maximum_rent_days: 14, photo: 'photo_boa2.jpg',
-                     maximum_occupancy: 15, usage_rules: 'Não pode criança',
-                     property_type: property_type)
+   property = create(:property, property_type: property_type,
+                     title: 'Sitio para festa')
 
     visit root_path
 
