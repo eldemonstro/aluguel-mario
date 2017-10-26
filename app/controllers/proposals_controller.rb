@@ -25,6 +25,7 @@ class ProposalsController < ApplicationController
   def accept
     proposal = Proposal.find(params[:id])
     proposal.accept
+    ProposalMailer.accept_proposal(proposal)
 
     redirect_to request.referer
   end
