@@ -64,7 +64,7 @@ class Proposal < ApplicationRecord
       initial_date += 1
     end
 
-    self.total_amount = total_guests * total_daily_rate
+    self.total_amount = total_daily_rate
   end
 
   def get_date_daily_rate(date)
@@ -84,10 +84,8 @@ class Proposal < ApplicationRecord
     proposals = Proposal.where(property: property, status: 'waiting')
 
     proposals.each do |proposal|
-      if(proposal.start_date.to_date >= start_date.to_date &&
-        proposal.start_date.to_date <= end_date.to_date) ||
-        (proposal.end_date.to_date >= start_date.to_date &&
-        proposal.end_date.to_date <= end_date.to_date)
+      if(proposal.start_date >= start_date && proposal.start_date <= end_date) ||
+        (proposal.end_date >= start_date && proposal.end_date <= end_date)
 
         proposal.status = 'refused'
         proposal.save

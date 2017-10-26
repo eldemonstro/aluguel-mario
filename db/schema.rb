@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20171026221811) do
+=======
+ActiveRecord::Schema.define(version: 20171025212304) do
+>>>>>>> d6a33fd74c966d347f5aa7947e03d2b7cec23ef1
 
   create_table "properties", force: :cascade do |t|
     t.string "location"
@@ -21,13 +25,16 @@ ActiveRecord::Schema.define(version: 20171026221811) do
     t.integer "rooms"
     t.integer "minimum_rent_days"
     t.integer "maximum_rent_days"
-    t.string "photo"
     t.integer "maximum_occupancy"
     t.text "usage_rules"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "property_type_id"
     t.text "address"
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.integer "photo_file_size"
+    t.datetime "photo_updated_at"
     t.index ["property_type_id"], name: "index_properties_on_property_type_id"
   end
 

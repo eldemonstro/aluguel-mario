@@ -1,5 +1,5 @@
 <div class="card" style="width: 20rem;">
-  <img class="card-img-top" src="http://www.catholicme.com/wp-content/themes/mts_newstoday/images/nothumb-newstoday-widgetfull.png" alt="Card image cap">
+  <%= image_tag property.photo.url(:medium) , class: 'card-img-top'%>
   <div class="card-body">
     <h4 class="card-title"><%= link_to property.title, property %></h4>
     <dl class="row card-text">

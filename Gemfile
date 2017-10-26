@@ -15,6 +15,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'jquery-rails'
+gem "paperclip", "~> 5.0.0"
 
 
 group :development, :test do
