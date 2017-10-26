@@ -12,7 +12,7 @@
   <div class="col-md-6">
     <h4>Cadastrar um imóvel</h4>
     <hr>
-    <%= form_for @property do |f| %>
+    <%= form_for @property, html: { multipart: true } do |f| %>
       <div class="form-group">
         <%= f.label :title %>
         <%= f.text_field :title, class: "form-control" %>
@@ -60,7 +60,7 @@
       </div>
       <div class="form-group">
         <%= f.label :photo , 'Foto'%>
-        <%= f.text_field :photo, class: "form-control" %>
+        <%= f.file_field :photo %>
       </div>
 
       <%= f.submit 'Cadastrar', class: "btn btn-primary" %>
