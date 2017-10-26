@@ -2,8 +2,7 @@ require 'rails_helper'
 
 feature 'Owner Sets Season Price' do
   scenario 'successfully' do
-    property_type = PropertyType.create(name: 'Casa de campo')
-    property = create(:property, property_type: property_type)
+    property = create(:property)
 
     visit property_url(property)
     click_on 'Cadastrar preço de Temporada'
@@ -14,11 +13,9 @@ feature 'Owner Sets Season Price' do
     fill_in 'Data Inicial', with: '01/12/2017'
     fill_in 'Data Final', with: '01/03/2018'
     fill_in 'Valor da Diária', with: 800
-
     click_on 'Enviar'
 
     expect(page).to have_content 'Temporada enviada com sucesso'
-
     expect(page).to have_content 'Alta Temporada'
     expect(page).to have_content '01/12/2017'
     expect(page).to have_content '01/03/2018'
@@ -26,12 +23,10 @@ feature 'Owner Sets Season Price' do
   end
 
   scenario 'and fills nothing' do
-    property_type = PropertyType.create(name: 'Casa de campo')
-    property = create(:property, property_type: property_type)
+    property = create(:property)
 
     visit property_url(property)
     click_on 'Cadastrar preço de Temporada'
-
     click_on 'Enviar'
 
     expect(page).to have_content 'Você deve informar o Nome da Temporada'

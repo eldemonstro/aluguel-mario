@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Owner Register a Property' do
   scenario 'successfully' do
-    property_type = PropertyType.create(name: 'Apartamento na praia')
+    property_type = create(:property_type)
     visit root_path
     click_on 'Cadastrar Imóvel'
 
@@ -18,11 +18,9 @@ feature 'Owner Register a Property' do
     fill_in 'Ocupação Máxima', with: 15
     fill_in 'Regras de Uso', with: 'Proibido cão e crianças'
     attach_file('Foto', "#{Rails.root}/spec/support/fixtures/image.jpg")
-
     click_on 'Cadastrar'
 
     expect(page).to have_content 'Imóvel cadastrado com sucesso'
-
     expect(page).to have_content 'Lindo apartamento 100m da praia'
     expect(page).to have_content property_type.name
     expect(page).to have_content 'Praia Grande'
@@ -35,11 +33,10 @@ feature 'Owner Register a Property' do
     expect(page).to have_content '15'
     expect(page).to have_content 'Proibido cão e crianças'
     expect(page).to have_xpath("//img[contains(@src,'image.jpg')]")
-
-
   end
+
   scenario 'and forget a field' do
-    PropertyType.create(name: 'Apartamento na praia')
+    create(:property_type)
 
     visit new_property_path
 
@@ -53,7 +50,6 @@ feature 'Owner Register a Property' do
     fill_in 'Máximo de Diárias', with: ''
     fill_in 'Ocupação Máxima', with: ''
     fill_in 'Regras de Uso', with: ''
-
     click_on 'Cadastrar'
 
     expect(page).to have_content 'Título não pode ficar em branco'

@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 feature 'Owner upload a photo' do
-
   scenario 'successfully' do
-    property_type = PropertyType.create(name: 'Apartamento na praia')
+    property_type = create(:property_type)
     visit root_path
     click_on 'Cadastrar Imóvel'
 
@@ -21,7 +20,7 @@ feature 'Owner upload a photo' do
     attach_file('Foto', "#{Rails.root}/spec/support/fixtures/image.jpg")
 
     click_on 'Cadastrar'
-    
+
     expect(page).to have_content 'Imóvel cadastrado com sucesso'
 
     expect(page).to have_content 'Lindo apartamento 100m da praia'
@@ -36,9 +35,5 @@ feature 'Owner upload a photo' do
     expect(page).to have_content '15'
     expect(page).to have_content 'Proibido cão e crianças'
     expect(page).to have_xpath("//img[contains(@src,'image.jpg')]")
-
-
   end
-
-
 end

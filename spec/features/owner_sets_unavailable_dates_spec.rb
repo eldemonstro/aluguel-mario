@@ -2,8 +2,7 @@ require 'rails_helper'
 
 feature 'Owner sets unavailable dates' do
   scenario 'successfully' do
-    property_type = PropertyType.create(name: 'Casa de campo')
-    property = create(:property, property_type: property_type)
+    property = create(:property)
 
     visit property_url(property)
     click_on 'Cadastrar Período Indisponível'
@@ -13,22 +12,19 @@ feature 'Owner sets unavailable dates' do
     fill_in 'Nome do período', with: 'Natal'
     fill_in 'Data Inicial', with: '20/12/2017'
     fill_in 'Data Final', with: '28/12/2017'
-
     click_on 'Enviar'
 
     expect(page).to have_content 'Período Indisponínel cadastrado com sucesso'
-
     expect(page).to have_content 'Natal'
     expect(page).to have_content '20/12/2017'
     expect(page).to have_content '28/12/2017'
   end
+
   scenario 'and fills nothing' do
-    property_type = PropertyType.create(name: 'Casa de campo')
-    property = create(:property, property_type: property_type)
+    property = create(:property)
 
     visit property_url(property)
     click_on 'Cadastrar Período Indisponível'
-
     click_on 'Enviar'
 
     expect(page).to have_content 'Você deve preencher o nome do período'
