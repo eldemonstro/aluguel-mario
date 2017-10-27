@@ -9,6 +9,7 @@ feature 'owner log in application' do
 
     fill_in 'Email' with: user.email
     fill_in 'Senha' with: '12345'
+    click_on 'Entrar'
 
     expect(page).to have_content("Bem vindo, #{user.name}")
     expect(page).not_to have_content("Entrar")
