@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'home#index'
+
+  devise_for :users
 
   resources :properties , only: [:new , :show, :create] do
 
@@ -14,4 +14,6 @@ Rails.application.routes.draw do
     get 'search_by_type', on: :collection
     get 'search_by_location', on: :collection
   end
+
+  get 'my_proposals', to: 'proposals#index', as: 'my_proposals'
 end

@@ -18,6 +18,7 @@
 #
 
 class Proposal < ApplicationRecord
+  belongs_to :user
   belongs_to :property
 
   validates :start_date, presence: {
@@ -26,14 +27,6 @@ class Proposal < ApplicationRecord
 
   validates :end_date , presence: {
     message: 'Você deve informar a Data Final'
-  }
-
-  validates :user_name, presence: {
-    message: 'Você deve informar seu Nome'
-  }
-
-  validates :email, presence: {
-    message: 'Você deve informar seu Email'
   }
 
   validates :total_guests, presence: {
@@ -75,7 +68,7 @@ class Proposal < ApplicationRecord
   end
 
   def accept
-    status = 'accepted'
+    self.status = 'accepted'
     save
     refuse_proposals
   end
@@ -88,10 +81,9 @@ class Proposal < ApplicationRecord
         (proposal.end_date >= start_date && proposal.end_date <= end_date)
 
         proposal.status = 'refused'
-        proposal.save
+        proposal.save(validate: false)
       end
     end
-
   end
 
   def proposal_can_not_be_send_when_have_periodo_conflict

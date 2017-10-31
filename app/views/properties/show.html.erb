@@ -47,10 +47,10 @@
           <% if proposal.status == 'waiting' %>
           <dl class="row">
             <dt class="col-sm-3">Nome do usuario:</dt>
-            <dd class="col-sm-9"><%= proposal.user_name %></dd>
+            <dd class="col-sm-9"><%= proposal.user.name %></dd>
 
             <dt class="col-sm-3">Email do usuario:</dt>
-            <dd class="col-sm-9"><%= proposal.email %></dd>
+            <dd class="col-sm-9"><%= proposal.user.email %></dd>
 
             <dt class="col-sm-3">Valor total da proposta:</dt>
             <dd class="col-sm-9"><%= number_to_currency(proposal.total_amount_calculator) %><dd class="col-sm-9">

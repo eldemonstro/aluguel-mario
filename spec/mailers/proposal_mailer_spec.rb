@@ -11,7 +11,7 @@ describe ProposalMailer, type: :mailer do
       proposal = create(:proposal, property: property)
 
       mail = ProposalMailer.accept_proposal(proposal)
-      expect(mail.to).to include proposal.email
+      expect(mail.to).to include proposal.user.email
       expect(mail.from).to include 'no-reply@alugatemporada.com'
       expect(mail.subject).to eq "Parabéns, sua proposta para o imóvel #{proposal.property.title} foi aceita"
     end

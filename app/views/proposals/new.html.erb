@@ -12,17 +12,6 @@
   <div class="col-md-7">
     <%= form_for [@property, @proposal] do |f| %>
       <div class="form-group">
-        <%= f.label :user_name, 'Nome' %>
-        <%= f.text_field :user_name, placeholder: 'Digite seu nome',
-                        class: 'form-control ' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :email, 'Email' %>
-        <%= f.text_field :email, placeholder: 'Digite seu email',
-                        class: 'form-control ' %>
-      </div>
-      <div class="form-group">
         <%= f.label :start_date, 'Data Inicial' %>
         <%= f.text_field :start_date, class: 'form-control ' %>
       </div>

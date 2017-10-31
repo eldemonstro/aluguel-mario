@@ -19,14 +19,18 @@
             <li class="nav-item">
               <%= link_to 'Cadastrar Imóvel', new_property_path, class: 'nav-link' %>
             </li>
-            <li class="nav-item">
-              <% if user_signed_in? %>
-                <%= link_to 'Sair' %>
-                <%= link_to 'Minhas Propostas' %>
-              <% else %>
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to 'Sair', class: 'nav-link' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Minhas Propostas', my_proposals_path, class: 'nav-link' %>
+              </li>
+            <% else %>
+              <li class="nav-item">
                 <%= link_to 'Entrar como locador', new_user_session_path, class: 'nav-link' %>
-              <% end %>
-            </li>
+              </li>
+            <% end %>
           </ul>
           <div>
             <%= form_tag(search_by_type_properties_path, method: "get", class: 'form-inline') do %>

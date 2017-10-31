@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: season_rates
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  start_date  :date
+#  end_date    :date
+#  daily_rate  :decimal(, )
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  property_id :integer
+#
+
 FactoryBot.define do
   factory :season_rate do
     name 'Alta temporada'

@@ -1,0 +1,8 @@
+<p><%= proposal.property.title %></p>
+<p><%= proposal.user.name %></p>
+<p><%= proposal.user.email %></p>
+<p><%= I18n.localize proposal.start_date %></p>
+<p><%= I18n.localize proposal.end_date %></p>
+<p><%= proposal.total_guests %></p>
+<p><%= proposal.purpose %></p>
+<p><%= number_to_currency(proposal.total_amount) %>

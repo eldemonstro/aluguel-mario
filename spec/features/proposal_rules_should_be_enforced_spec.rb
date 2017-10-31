@@ -1,14 +1,17 @@
 require 'rails_helper'
 
 feature 'Visitor send a invalid proposal' do
+  before :each do
+    user = create(:user, name: 'Maria Silva', email: 'mariasilva2000@gmail.com')
+    login_as(user, scope: :user)
+  end
+
   scenario 'successfuly' do
-    property = create(:property, maximum_occupancy: 10)
+   property = create(:property, maximum_occupancy: 10)
 
    visit property_path(property)
    click_on 'Enviar Proposta'
 
-   fill_in 'Nome', with: 'Maria Silva'
-   fill_in 'Email', with: 'mariasilva2000@gmail.com'
    fill_in 'Data Inicial', with: '01/12/2017'
    fill_in 'Data Final', with: '10/12/2017'
    fill_in 'Quatidade de Pessoas', with: 18
@@ -26,8 +29,6 @@ feature 'Visitor send a invalid proposal' do
     visit property_path(property)
     click_on 'Enviar Proposta'
 
-    fill_in 'Nome', with: 'Maria Silva'
-    fill_in 'Email', with: 'mariasilva2000@gmail.com'
     fill_in 'Data Inicial', with: '01/12/2017'
     fill_in 'Data Final', with: '30/12/2017'
     fill_in 'Quatidade de Pessoas', with: 10
@@ -44,9 +45,7 @@ feature 'Visitor send a invalid proposal' do
 
     visit property_path(property)
     click_on 'Enviar Proposta'
-
-    fill_in 'Nome', with: 'Maria Silva'
-    fill_in 'Email', with: 'mariasilva2000@gmail.com'
+    
     fill_in 'Data Inicial', with: '01/12/2017'
     fill_in 'Data Final', with: '4/12/2017'
     fill_in 'Quatidade de Pessoas', with: 10
