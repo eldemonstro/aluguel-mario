@@ -1,5 +1,7 @@
 <%= flash[:error] %>
-
+<% if owner_signed_in? %>
+  <p>Bem-vindo, <%= current_owner.name %></p>
+<% end %>
 
 <div class="row">
   <% if @properties.empty? %>
@@ -9,7 +11,6 @@
   <% else %>
     <% @properties.each do |property| %>
     <div class="col-4">
-
       <%= render partial: '/shared/property_thumbnail', locals: {property: property}%>
     </div>
     <% end %>

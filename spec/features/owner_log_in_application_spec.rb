@@ -9,12 +9,12 @@ feature 'owner log in application' do
 
     fill_in 'Email', with: owner.email
     fill_in 'Senha', with: owner.password
-    within 'div.sign_in' do
+    within 'div.actions' do
       click_on 'Entrar'
     end
 
 
-    expect(page).to have_content("Bem vindo, #{owner.name}")
+    expect(page).to have_content("Bem-vindo, #{owner.first_name}")
     expect(page).not_to have_content("Entrar")
     expect(page).to have_content("Sair")
   end

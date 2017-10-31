@@ -19,9 +19,15 @@
             <li class="nav-item">
               <%= link_to 'Cadastrar Imóvel', new_property_path, class: 'nav-link' %>
             </li>
+            <% if !owner_signed_in? %>
+              <li class="nav-item">
+                <%= link_to 'Entrar', new_owner_session_path %>
+              </li>
+            <% else %>
             <li class="nav-item">
-              <%= link_to 'Entrar', new_owner_session_path %>
+              <%= link_to 'Sair', destroy_owner_session_path, method: :delete %>
             </li>
+            <% end %>
           </ul>
           <div>
             <%= form_tag(search_by_type_properties_path, method: "get", class: 'form-inline') do %>
