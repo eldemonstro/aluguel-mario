@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature 'Owner upload a photo' do
   scenario 'successfully' do
+    owner = create(:owner)
+    login_as(owner, :scope => :owner)
     property_type = create(:property_type)
     visit root_path
     click_on 'Cadastrar Imóvel'

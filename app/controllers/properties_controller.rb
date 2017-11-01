@@ -1,5 +1,10 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_owner!, only: [:index, :new, :create]
+
+  def index
+    @properties = current_owner.properties
+  end
 
   def new
     @property = Property.new
@@ -8,6 +13,7 @@ class PropertiesController < ApplicationController
 
   def create
     @property = Property.new(property_params)
+    @property.owner = current_owner
     if @property.save
       flash[:message] = 'Imóvel cadastrado com sucesso'
       redirect_to property_url @property

@@ -19,15 +19,6 @@
             <li class="nav-item">
               <%= link_to 'Cadastrar Imóvel', new_property_path, class: 'nav-link' %>
             </li>
-            <% if !owner_signed_in? %>
-              <li class="nav-item">
-                <%= link_to 'Entrar', new_owner_session_path %>
-              </li>
-            <% else %>
-            <li class="nav-item">
-              <%= link_to 'Sair', destroy_owner_session_path, method: :delete %>
-            </li>
-            <% end %>
           </ul>
           <div>
             <%= form_tag(search_by_type_properties_path, method: "get", class: 'form-inline') do %>
@@ -43,6 +34,17 @@
               <%= submit_tag "Buscar por Localização", class: 'btn btn-outline-secondary mr-sm-2' %>
             <% end %>
           </div>
+          <ul class="nav navbar-nav navbar-right">
+            <% if !owner_signed_in? %>
+              <li class="nav-item">
+                <%= link_to 'Entrar', new_owner_session_path, class: 'nav-link' %>
+              </li>
+            <% else %>
+            <li class="nav-item">
+              <%= link_to 'Sair', destroy_owner_session_path, method: :delete, class: 'nav-link' %>
+            </li>
+            <% end %>
+          </ul
         </div>
       </nav>
     <div>

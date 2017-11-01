@@ -10,6 +10,8 @@ feature 'Visitor Use Navigation Menu' do
   end
 
   scenario 'Visit create property' do
+    owner = create(:owner)
+    login_as(owner, :scope => :owner)
     visit root_path
     click_on 'Cadastrar Imóvel'
 

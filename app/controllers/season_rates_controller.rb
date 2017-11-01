@@ -1,5 +1,6 @@
 class SeasonRatesController < ApplicationController
   before_action :set_property, only: [:show, :new, :create]
+  before_action :authenticate_owner!
 
   def show
     @season_rate = SeasonRate.find(params[:id])

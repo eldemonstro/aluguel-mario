@@ -12,5 +12,6 @@ FactoryBot.define do
     usage_rules 'Não pode cavalo'
     photo { File.new("#{Rails.root}/spec/support/fixtures/image.jpg") }
     property_type
+    owner
   end
 end

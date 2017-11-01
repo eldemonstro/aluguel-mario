@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature 'Owner Register a Property' do
   scenario 'successfully' do
+    owner = create(:owner)
+    login_as(owner, :scope => :owner)
     property_type = create(:property_type)
     visit root_path
     click_on 'Cadastrar Imóvel'
@@ -36,6 +38,8 @@ feature 'Owner Register a Property' do
   end
 
   scenario 'and forget a field' do
+    owner = create(:owner)
+    login_as(owner, :scope => :owner)
     create(:property_type)
 
     visit new_property_path
