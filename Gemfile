@@ -25,6 +25,7 @@ group :development, :test do
   gem 'capybara'
   gem 'annotate', require: false
   gem 'factory_bot_rails'
+  gem 'rubocop', require: false
 end
 
 group :test do

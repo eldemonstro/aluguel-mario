@@ -88,4 +88,12 @@ feature 'Visitor Send Proposal' do
     expect(page).to have_content 'Sua proposta foi rejeitada automaticamente.
 Verifique as datas indisponíveis nos detalhes do imóvel.'
   end
+
+  scenario 'and is not logged in' do
+    property = create(:property, daily_rate: 300)
+
+    visit property_path(property)
+
+    expect(page).not_to have_link('Enviar Proposta')
+  end
 end
