@@ -4,57 +4,57 @@
     <title>AluguelTemporada</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <%= link_to 'Aluga Temporada', root_path, class: 'navbar-brand' %>
-        <div class="collapse navbar-collapse">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <%= link_to 'Home', root_path, class: 'nav-link' %>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <%= link_to 'Home', root_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Cadastrar Imóvel', new_property_path, class: 'nav-link' %>
+          </li>
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: 'nav-link' %>
             </li>
             <li class="nav-item">
-              <%= link_to 'Cadastrar Imóvel', new_property_path, class: 'nav-link' %>
+              <%= link_to 'Minhas Propostas', my_proposals_path, class: 'nav-link' %>
             </li>
-            <% if user_signed_in? %>
-              <li class="nav-item">
-                <%= link_to 'Sair', class: 'nav-link' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'Minhas Propostas', my_proposals_path, class: 'nav-link' %>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to 'Entrar como locador', new_user_session_path, class: 'nav-link' %>
-              </li>
-            <% end %>
-          </ul>
-          <div>
-            <%= form_tag(search_by_type_properties_path, method: "get", class: 'form-inline') do %>
-              <%= label_tag :name, 'Busca por Tipo do Imóvel', class: 'text-light mr-sm-2' %>
-              <%= text_field_tag :name, nil, class: 'form-control mr-sm-2' %>
-              <%= submit_tag "Buscar por Tipo", class: 'btn btn-outline-secondary mr-sm-2' %>
-            <% end %>
-          </div>
-          <div>
-            <%= form_tag(search_by_location_properties_path, method: "get", class: 'form-inline') do %>
-              <%= label_tag :location, 'Busca por Localização', class: 'text-light mr-sm-2' %>
-              <%= text_field_tag :location, nil, class: 'form-control mr-sm-2' %>
-              <%= submit_tag "Buscar por Localização", class: 'btn btn-outline-secondary mr-sm-2' %>
-            <% end %>
-          </div>
-        </div>
-      </nav>
-    <div>
-      <%= flash[:message] %>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to 'Entrar como locador', new_user_session_path, class: 'nav-link' %>
+            </li>
+          <% end %>
+        </ul>
+        <div>
+          <%= form_tag(search_by_type_properties_path, method: "get", class: 'form-inline') do %>
+          <%= label_tag :name, 'Busca por Tipo do Imóvel', class: 'text-light mr-sm-2' %>
+          <%= text_field_tag :name, nil, class: 'form-control mr-sm-2' %>
+          <%= submit_tag "Buscar por Tipo", class: 'btn btn-outline-secondary mr-sm-2' %>
+        <% end %>
+      </div>
+      <div>
+        <%= form_tag(search_by_location_properties_path, method: "get", class: 'form-inline') do %>
+        <%= label_tag :location, 'Busca por Localização', class: 'text-light mr-sm-2' %>
+        <%= text_field_tag :location, nil, class: 'form-control mr-sm-2' %>
+        <%= submit_tag "Buscar por Localização", class: 'btn btn-outline-secondary mr-sm-2' %>
+      <% end %>
     </div>
-    <div class="container">
-      <%= yield %>
-    </div>
-  </body>
+  </div>
+</nav>
+<div>
+  <%= flash[:message] %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+</div>
+<div class="container">
+  <%= yield %>
+</div>
+</body>
 </html>

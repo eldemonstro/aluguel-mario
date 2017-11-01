@@ -1,24 +1,24 @@
 class ProposalsController < ApplicationController
-
   before_action :set_property, only: [:show, :new, :create]
+  before_action :authenticate_user!, only: [:show, :new, :index, :create]
 
   def show
     @proposal = Proposal.find(params[:id])
-  end
-
-  def new
-    @proposal = Proposal.new
   end
 
   def index
     @proposals = current_user.proposals
   end
 
+  def new
+    @proposal = Proposal.new
+  end
+
   def create
     @proposal = Proposal.new(proposal_params)
     @proposal.property = @property
     @proposal.total_amount_calculator
-    @proposal.user= current_user
+    @proposal.user = current_user
     if @proposal.save
       flash[:message] = 'Proposta enviada com sucesso'
       redirect_to property_proposal_path(@property, @proposal)
@@ -36,6 +36,7 @@ class ProposalsController < ApplicationController
   end
 
   private
+
   def proposal_params
     params.require(:proposal).permit(:user_name, :email, :start_date,
                                      :end_date, :total_guests, :purpose,
@@ -43,7 +44,6 @@ class ProposalsController < ApplicationController
   end
 
   def set_property
-     @property = Property.find(params[:property_id])
+    @property = Property.find(params[:property_id])
   end
-
 end

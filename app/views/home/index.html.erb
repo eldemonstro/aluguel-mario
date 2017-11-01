@@ -1,6 +1,5 @@
 <%= flash[:error] %>
 
-
 <div class="row">
   <% if @properties.empty? %>
     <div class="alert alert-danger" role="alert">
@@ -8,10 +7,10 @@
     </div>
   <% else %>
     <% @properties.each do |property| %>
-    <div class="col-4">
+      <div class="col-4">
 
-      <%= render partial: '/shared/property_thumbnail', locals: {property: property}%>
-    </div>
+        <%= render partial: '/shared/property_thumbnail', locals: {property: property}%>
+      </div>
     <% end %>
   <% end %>
 

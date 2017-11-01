@@ -46,7 +46,7 @@ feature 'Visitor Send Proposal' do
     user = create(:user, name: 'Maria Silva', email: 'mariasilva2000@gmail.com')
     login_as(user, scope: :user)
     property = create(:property, daily_rate: 300)
-    season_price = create(:season_rate, property: property)
+    create(:season_rate, property: property)
 
     visit property_url(property)
     click_on 'Enviar Proposta'
@@ -72,7 +72,8 @@ feature 'Visitor Send Proposal' do
     user = create(:user, name: 'Maria Silva', email: 'mariasilva2000@gmail.com')
     login_as(user, scope: :user)
     unavailable_date = create(:unavailable_date, name: 'Natal',
-                      start_date: '23/12/2017', end_date: '28/12/2017')
+                                                 start_date: '23/12/2017',
+                                                 end_date: '28/12/2017')
 
     visit property_url(unavailable_date.property)
     click_on 'Enviar Proposta'
@@ -95,5 +96,13 @@ Verifique as datas indisponíveis nos detalhes do imóvel.'
     visit property_path(property)
 
     expect(page).not_to have_link('Enviar Proposta')
+  end
+
+  scenario 'and is not logged in and go to url' do
+    property = create(:property, daily_rate: 300)
+
+    visit new_property_proposal_path(property)
+
+    expect(current_path).to eq(new_user_session_path)
   end
 end

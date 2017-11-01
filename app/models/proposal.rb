@@ -21,11 +21,13 @@ class Proposal < ApplicationRecord
   belongs_to :user
   belongs_to :property
 
+  enum status: { waiting: 0, accepted: 1, refused: 2 }
+
   validates :start_date, presence: {
     message: 'Você deve informar a Data Inicial'
   }
 
-  validates :end_date , presence: {
+  validates :end_date, presence: {
     message: 'Você deve informar a Data Final'
   }
 
@@ -51,7 +53,7 @@ class Proposal < ApplicationRecord
     final_date = end_date
     total_daily_rate = 0
 
-    while initial_date <= final_date do
+    while initial_date <= final_date
       daily_rate = get_date_daily_rate(initial_date)
       total_daily_rate += daily_rate
       initial_date += 1
@@ -62,40 +64,44 @@ class Proposal < ApplicationRecord
 
   def get_date_daily_rate(date)
     daily_rates = property.season_rates.where(
-            ":date >= start_date AND :date <= end_date", {date: date}).order(
-            daily_rate: :desc).first
+      ':date >= start_date AND :date <= end_date', date: date
+    ).order(
+      daily_rate: :desc
+    ).first
     daily_rates.nil? ? property.daily_rate : daily_rates.daily_rate
   end
 
   def accept
-    self.status = 'accepted'
+    self.accepted!
     save
     refuse_proposals
   end
 
   def refuse_proposals
-    proposals = Proposal.where(property: property, status: 'waiting')
+    proposals = Proposal.where(property: property, status: :waiting)
+    if proposals
+      proposals.each do |proposal|
+        if (proposal.start_date >= start_date && proposal.start_date <= end_date) ||
+           (proposal.end_date >= start_date && proposal.end_date <= end_date)
 
-    proposals.each do |proposal|
-      if(proposal.start_date >= start_date && proposal.start_date <= end_date) ||
-        (proposal.end_date >= start_date && proposal.end_date <= end_date)
-
-        proposal.status = 'refused'
-        proposal.save(validate: false)
+          proposal.status = 2
+          proposal.save(validate: false)
+        end
       end
     end
   end
 
   def proposal_can_not_be_send_when_have_periodo_conflict
     proposals = Proposal.where(property: property, status: 'accepted')
-    proposals.each do |proposal|
+    if proposals
+      proposals.each do |proposal|
+        if (proposal.start_date >= start_date &&
+            proposal.start_date <= end_date) ||
+           (proposal.end_date >= start_date &&
+           proposal.end_date.to_date <= end_date.to_date)
 
-      if (proposal.start_date >= start_date &&
-          proposal.start_date <= end_date) ||
-          (proposal.end_date >= start_date &&
-          proposal.end_date.to_date <= end_date.to_date)
-
-          errors.add(:end_date, "Não é possivel enviar uma proposta para este periodo")
+          errors.add(:end_date, 'Não é possivel enviar uma proposta para este periodo')
+        end
       end
     end
   end
@@ -117,12 +123,13 @@ class Proposal < ApplicationRecord
 
   def refuse_proposals_based_on_unavalable_date
     unavailable_dates = UnavailableDate.where(
-        ":start_date between start_date AND end_date OR :end_date between
-        start_date AND end_date", {start_date: start_date, end_date: end_date})
+      ":start_date between start_date AND end_date OR :end_date between
+      start_date AND end_date", start_date: start_date, end_date: end_date
+    )
 
     if unavailable_dates.present?
       errors.add(:proposal,
-      'Sua proposta foi rejeitada automaticamente. Verifique as datas indisponíveis nos detalhes do imóvel.')
+                 'Sua proposta foi rejeitada automaticamente. Verifique as datas indisponíveis nos detalhes do imóvel.')
     end
   end
 end

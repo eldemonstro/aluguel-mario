@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-  before_action :set_property, only: [:show, :edit, :update, :destroy]
+  before_action :set_property, only: %i[show edit update destroy]
 
   def new
     @property = Property.new
@@ -17,13 +17,10 @@ class PropertiesController < ApplicationController
     end
   end
 
-  def show
-
-  end
+  def show; end
 
   def search_by_type
-    #@properties = Property.joins(:property_type).where(property_types: { name: params[:name] })
-
+    # @properties = Property.joins(:property_type).where(property_types: { name: params[:name] })
 
     @types = PropertyType.where(name: params[:name])
     @properties = Property.where(property_type: @types)
@@ -45,12 +42,10 @@ class PropertiesController < ApplicationController
     end
   end
 
-
-
   private
 
   def set_property
-     @property = Property.find(params[:id])
+    @property = Property.find(params[:id])
   end
 
   def property_params
@@ -59,7 +54,5 @@ class PropertiesController < ApplicationController
                                      :minimum_rent_days, :maximum_rent_days,
                                      :maximum_occupancy, :usage_rules,
                                      :photo)
-
   end
-
 end
