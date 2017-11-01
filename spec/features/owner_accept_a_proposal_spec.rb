@@ -6,7 +6,7 @@ feature 'Owner accept a proposal' do
     proposal_1 = create(:proposal, property: property, user_name: 'João')
     proposal_2 = create(:proposal, property: property, user_name: 'Maria')
     proposal_3 = create(:proposal, property: property, user_name: 'Mario',
-                        start_date: '12/01/2019', end_date: '15/01/2019')
+                                   start_date: '12/01/2019', end_date: '15/01/2019')
 
     visit property_path(property)
     click_on "Aceitar proposta #{proposal_1.id}"
