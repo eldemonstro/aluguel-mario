@@ -10,5 +10,6 @@ feature 'owner log out application' do
     click_on 'Sair'
 
     expect(page).to have_content(I18n.t('devise.sessions.signed_out'))
+    expect(page).to have_content('Entrar')
   end
 end
