@@ -6,13 +6,13 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'ae3e8e6954993066306601bc12c1137e775a08d14e5ed5227ff7dd2637a589d3e35adc732beb89083d364f3c5638a8bcaa9a1076c092259dfc73daf32034bebb'
+  # config.secret_key = '831223597f443c866e180c293736dcdc39af3111d33f7ed10727c2b44e3c6336028b16faffac56a123e49aad0442a13cc8114800b8b2399e064a2d861f42b2ff'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'no-reply@aluga-temporada.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -108,7 +108,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '6240dca98a016fcab23a87a815bd54efc0f2cd5677a88aca8dcb314a3edac4947f768e1211f170bdb1561b116846842909d67ce2e7d03d64210f6e78de613422'
+  # config.pepper = '95419fcec8a6ca6501ae3eee6eeaa317eba5118750842e3a858c248a5edfc69580e0755c3397dd42e6b266eb561cdebdd4d06d16bc646013744a9a43f54dbe8c'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -223,7 +223,7 @@ Devise.setup do |config|
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
-  # config.scoped_views = false
+   config.scoped_views = true
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).
@@ -274,6 +274,4 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
-
-  config.scoped_views = true
 end

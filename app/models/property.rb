@@ -27,6 +27,7 @@ class Property < ApplicationRecord
   has_many :proposals
   has_many :season_rates
   has_many :unavailable_dates
+  belongs_to :owner
 
   validates :title, presence: true
 

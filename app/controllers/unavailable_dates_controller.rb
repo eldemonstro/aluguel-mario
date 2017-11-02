@@ -1,6 +1,7 @@
 class UnavailableDatesController < ApplicationController
 
   before_action :set_property, only: [:show, :new, :create]
+  before_action :authenticate_owner!
 
   def show
     @unavailable_date = UnavailableDate.find(params[:id])

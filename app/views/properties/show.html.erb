@@ -65,18 +65,18 @@
       </dd>
     </dl>
   </dl>
-
-  <div class="row action-buttons">
-    <% if user_signed_in? %>
-      <div class="col-md-3">
-        <%= link_to 'Enviar Proposta', new_property_proposal_path(@property), class: 'btn btn-primary' %>
-      </div>
-    <% end %>
+<div class="row action-buttons">
+  <% if user_signed_in? %>
     <div class="col-md-3">
-      <%= link_to 'Cadastrar preço de Temporada', new_property_season_rate_path(@property), class: 'btn btn-primary' %>
+      <%= link_to 'Enviar Proposta', new_property_proposal_path(@property), class: 'btn btn-primary' %>
     </div>
-    <div class="col-md-3">
-      <%= link_to 'Cadastrar Período Indisponível', new_property_unavailable_date_path(@property), class: 'btn btn-primary' %>
-    </div>
-
+  <% end %>
+<% if owner_signed_in? %>
+  <div class="col-md-3">
+    <%= link_to 'Cadastrar preço de Temporada', new_property_season_rate_path(@property), class: 'btn btn-primary' %>
   </div>
+  <div class="col-md-3">
+    <%= link_to 'Cadastrar Período Indisponível', new_property_unavailable_date_path(@property), class: 'btn btn-primary' %>
+  </div>
+<% end %>
+</div>

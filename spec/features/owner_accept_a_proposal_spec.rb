@@ -3,8 +3,8 @@ require 'rails_helper'
 feature 'Owner accept a proposal' do
   scenario 'successfully' do
     property = create(:property)
-    user_1 = create(:user, name: 'João')
-    accepted_proposal = create(:proposal, property: property, user: user_1)
+    user1 = create(:user, name: 'João')
+    accepted_proposal = create(:proposal, property: property, user: user1)
 
     visit root_path
     click_on property.title
@@ -17,10 +17,10 @@ feature 'Owner accept a proposal' do
 
   scenario 'and rejects other proposals with intercalated dates' do
     property = create(:property)
-    user_1 = create(:user, name: 'João')
-    user_2 = create(:user, name: 'Maria')
-    accepted_proposal = create(:proposal, property: property, user: user_1)
-    rejected_proposal = create(:proposal, property: property, user: user_2)
+    user1 = create(:user, name: 'João')
+    user2 = create(:user, name: 'Maria')
+    accepted_proposal = create(:proposal, property: property, user: user1)
+    rejected_proposal = create(:proposal, property: property, user: user2)
 
     visit property_path(property)
     click_on "Aceitar proposta #{accepted_proposal.id}"
@@ -34,10 +34,10 @@ feature 'Owner accept a proposal' do
 
   scenario 'and do not reject proposals in different dates' do
     property = create(:property)
-    user_1 = create(:user, name: 'João')
-    user_2 = create(:user, name: 'Maria')
-    accepted_proposal = create(:proposal, property: property, user: user_1)
-    waiting_proposal = create(:proposal, property: property, user: user_2,
+    user1 = create(:user, name: 'João')
+    user2 = create(:user, name: 'Maria')
+    accepted_proposal = create(:proposal, property: property, user: user1)
+    waiting_proposal = create(:proposal, property: property, user: user2,
                         start_date: '12/01/2019', end_date: '15/01/2019')
 
     visit root_path

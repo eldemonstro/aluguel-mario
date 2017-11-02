@@ -1,8 +1,8 @@
-<%= flash[:error] %>
 <% if owner_signed_in? %>
   <p>Bem-vindo, <%= current_owner.first_name %></p>
 <% end %>
 
+<h2>Meus Imóveis</h2>
 <div class="row">
   <% if @properties.empty? %>
     <div class="alert alert-danger" role="alert">
@@ -15,5 +15,4 @@
     </div>
     <% end %>
   <% end %>
-
 </div>

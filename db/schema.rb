@@ -12,6 +12,25 @@
 
 ActiveRecord::Schema.define(version: 20171101212742) do
 
+  create_table "owners", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "document"
+    t.index ["email"], name: "index_owners_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
+  end
+
   create_table "properties", force: :cascade do |t|
     t.string "location"
     t.string "area"
@@ -30,6 +49,9 @@ ActiveRecord::Schema.define(version: 20171101212742) do
     t.string "photo_content_type"
     t.integer "photo_file_size"
     t.datetime "photo_updated_at"
+    t.text "address"
+    t.integer "owner_id"
+    t.index ["owner_id"], name: "index_properties_on_owner_id"
     t.index ["property_type_id"], name: "index_properties_on_property_type_id"
   end
 

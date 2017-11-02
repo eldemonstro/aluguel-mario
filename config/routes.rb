@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   devise_for :users
+  devise_for :owners
 
-  resources :properties , only: [:new , :show, :create] do
-
+  resources :properties, only: [:index, :new , :show, :create] do
     resources :proposals, only: [:show, :new, :create] do
       post 'accept', on: :member
     end

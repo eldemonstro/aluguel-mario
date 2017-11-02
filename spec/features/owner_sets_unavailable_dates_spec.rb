@@ -3,6 +3,8 @@ require 'rails_helper'
 feature 'Owner sets unavailable dates' do
   scenario 'successfully' do
     property = create(:property)
+    owner = create(:owner)
+    login_as(owner, scope: :owner)
 
     visit property_url(property)
     click_on 'Cadastrar Período Indisponível'
@@ -22,6 +24,8 @@ feature 'Owner sets unavailable dates' do
 
   scenario 'and fills nothing' do
     property = create(:property)
+    owner = create(:owner)
+    login_as(owner, scope: :owner)
 
     visit property_url(property)
     click_on 'Cadastrar Período Indisponível'

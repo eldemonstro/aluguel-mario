@@ -3,6 +3,8 @@ require 'rails_helper'
 feature 'Owner Sets Season Price' do
   scenario 'successfully' do
     property = create(:property)
+    owner = create(:owner)
+    login_as(owner, scope: :owner)
 
     visit property_url(property)
     click_on 'Cadastrar preço de Temporada'
@@ -24,6 +26,8 @@ feature 'Owner Sets Season Price' do
 
   scenario 'and fills nothing' do
     property = create(:property)
+    owner = create(:owner)
+    login_as(owner, scope: :owner)
 
     visit property_url(property)
     click_on 'Cadastrar preço de Temporada'
