@@ -1,0 +1,13 @@
+<% if @properties.any? %>
+  <div class="row">
+    <% @properties.each do |property| %>
+      <div class="col-4">
+        <%= render partial: '/shared/property_thumbnail', locals: {property: property}%>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="alert alert-danger" role="alert">
+    Nenhum imóvel nessa categoria
+  </div>
+<% end %>

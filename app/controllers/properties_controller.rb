@@ -1,6 +1,8 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_owner!, only: [:index, :new, :create]
+  before_action :authenticate_owner!, only: [:index, :new, :create,
+                                             :add_location_purpose,
+                                             :location_purpose]
 
   def index
     @properties = current_owner.properties
@@ -9,6 +11,7 @@ class PropertiesController < ApplicationController
   def new
     @property = Property.new
     @property_types = PropertyType.all
+    @location_purposes = LocationPurpose.all
   end
 
   def create
@@ -19,6 +22,7 @@ class PropertiesController < ApplicationController
       redirect_to property_url @property
     else
       @property_types = PropertyType.all
+      @location_purposes = LocationPurpose.all
       render :new
     end
   end
@@ -48,6 +52,18 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def add_location_purpose
+    @location_purposes = LocationPurpose.all
+  end
+
+  def location_purpose
+    property = Property.find(params[:id])
+    location_purpose = LocationPurpose.find(params[:location_purpose_id])
+    property.location_purposes << location_purpose
+    property.save
+    redirect_to property
+  end
+
   private
 
   def set_property
@@ -59,6 +75,6 @@ class PropertiesController < ApplicationController
                                      :area, :description, :daily_rate, :rooms,
                                      :minimum_rent_days, :maximum_rent_days,
                                      :maximum_occupancy, :usage_rules,
-                                     :photo)
+                                     :photo, :location_purpose_ids)
   end
 end

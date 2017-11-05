@@ -35,6 +35,11 @@
         <%= f.text_field :description, class: "form-control" %>
       </div>
       <div class="form-group">
+        <%= f.label :location_purpose_ids, 'Propósito da locação'  %>
+        <%= f.collection_select(:location_purpose_ids, @location_purposes,
+                                :id, :title, {},class: 'form-control') %>
+      </div>
+      <div class="form-group">
         <%= f.label :daily_rate , 'Valor da Diária'%>
         <%= f.text_field :daily_rate, class: "form-control" %>
       </div>

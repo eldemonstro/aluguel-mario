@@ -1,0 +1,5 @@
+<%= form_tag location_purpose_property_path, method: :post do %>
+  <%= label_tag :location_purpose_id, 'Propósito de locação' %>
+  <%= select_tag :location_purpose_id, options_from_collection_for_select(@location_purposes, "id", "title") %>
+  <%= submit_tag 'Adicionar' %>
+<% end %>

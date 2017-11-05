@@ -15,5 +15,12 @@
     </div>
     <% end %>
   <% end %>
-
 </div>
+
+<% if @location_purposes.any? %>
+  <ul>
+    <% @location_purposes.each do |location_purpose| %>
+      <li><%= link_to location_purpose.title, properties_by_purpose_path(location_purpose) %></li>
+    <% end %>
+  </ul>
+<% end %>

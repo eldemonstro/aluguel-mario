@@ -4,7 +4,7 @@ feature 'Owner Register a Property' do
   scenario 'successfully' do
     owner = create(:owner)
     login_as(owner, :scope => :owner)
-    property_type = create(:property_type)
+    create(:property_type)
     visit root_path
     click_on 'Cadastrar Imóvel'
 
@@ -24,7 +24,7 @@ feature 'Owner Register a Property' do
 
     expect(page).to have_content 'Imóvel cadastrado com sucesso'
     expect(page).to have_content 'Lindo apartamento 100m da praia'
-    expect(page).to have_content property_type.name
+    expect(page).to have_content 'Apartamento na praia'
     expect(page).to have_content 'Praia Grande'
     expect(page).to have_content '30m²'
     expect(page).to have_content 'Pode vir que é garantido'

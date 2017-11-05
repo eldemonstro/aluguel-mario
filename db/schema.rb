@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101212742) do
+ActiveRecord::Schema.define(version: 20171105151916) do
+
+  create_table "location_purposes", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "location_purposes_properties", id: false, force: :cascade do |t|
+    t.integer "location_purpose_id"
+    t.integer "property_id"
+    t.index ["location_purpose_id"], name: "index_location_purposes_properties_on_location_purpose_id"
+    t.index ["property_id"], name: "index_location_purposes_properties_on_property_id"
+  end
 
   create_table "owners", force: :cascade do |t|
     t.string "email", default: "", null: false

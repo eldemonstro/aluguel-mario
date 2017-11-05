@@ -28,6 +28,7 @@ class Property < ApplicationRecord
   has_many :season_rates
   has_many :unavailable_dates
   belongs_to :owner
+  has_and_belongs_to_many :location_purposes
 
   validates :title, presence: true
 

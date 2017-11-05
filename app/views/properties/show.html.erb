@@ -16,6 +16,22 @@
   <dt class="col-sm-3">Descrição:</dt>
   <dd class="col-sm-9"><%= @property.description %></dd>
 
+  <dt class="col-sm-3">Propósitos de locação</dt>
+  <dd class="col-sm-9">
+    <ul>
+      <% if @property.location_purposes.any? %>
+        <% @property.location_purposes.each do |location_purpose| %>
+          <li><%= location_purpose.title %></li>
+        <% end %>
+      <% else %>
+        <li>Nenhum propósito cadastrado</li>
+      <% end %>
+      <% if owner_signed_in? %>
+        <li><%= link_to 'Adicionar propósito de locação', add_location_purpose_property_path(@property) %></li>
+      <% end %>
+    </ul>
+  </dd>
+
   <dt class="col-sm-3">Valor da diária:</dt>
   <dd class="col-sm-9"><%= number_to_currency(@property.daily_rate) %></dd>
 
